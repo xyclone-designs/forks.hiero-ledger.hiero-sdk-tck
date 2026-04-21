@@ -98,9 +98,9 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-				TokenAirdrop = new Proto.TokenAirdropTransactionBody()
+				TokenAirdrop = new Proto.Services.TokenAirdropTransactionBody()
 			};
             var tx = Transaction.FromScheduledTransaction<TokenAirdropTransaction>(transactionBody);
             
@@ -191,14 +191,14 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void TestBuildTransactionBody()
         {
-            Proto.TokenAirdropTransactionBody builder = SpawnTestTransaction().ToProtobuf();
+            Proto.Services.TokenAirdropTransactionBody builder = SpawnTestTransaction().ToProtobuf();
             Assert.NotNull(builder);
         }
 
         [Fact]
         public virtual void TestGetMethodDescriptor()
         {
-            //Assert.Equal(Proto.TokenService.Descriptor.GetAirdropTokensMethod(), transaction.GetMethodDescriptor());
+            //Assert.Equal(Proto.Services.TokenService.Descriptor.GetAirdropTokensMethod(), transaction.GetMethodDescriptor());
         }
     }
 }

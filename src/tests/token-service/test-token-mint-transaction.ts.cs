@@ -86,9 +86,9 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-				TokenMint = new Proto.TokenMintTransactionBody()
+				TokenMint = new Proto.Services.TokenMintTransactionBody()
 			};
             var tx = Transaction.FromScheduledTransaction<TokenMintTransaction>(transactionBody);
             Assert.IsType<TokenMintTransaction>(tx);
@@ -96,7 +96,7 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void ConstructTokenMintTransactionFromTransactionBodyProtobuf()
         {
-            var transactionBody = new Proto.TokenMintTransactionBody
+            var transactionBody = new Proto.Services.TokenMintTransactionBody
             {
 				Token = testTokenId.ToProtobuf(),
 				Amount = (ulong)testAmount,

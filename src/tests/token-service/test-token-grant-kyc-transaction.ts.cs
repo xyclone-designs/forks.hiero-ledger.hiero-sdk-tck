@@ -55,9 +55,9 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-                TokenGrantKyc = new Proto.TokenGrantKycTransactionBody()
+                TokenGrantKyc = new Proto.Services.TokenGrantKycTransactionBody()
             };
             
             var tx = Transaction.FromScheduledTransaction<TokenGrantKycTransaction>(transactionBody);
@@ -67,7 +67,7 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void ConstructTokenGrantKycTransactionFromTransactionBodyProtobuf()
         {
-            var transactionBody = new Proto.TokenGrantKycTransactionBody
+            var transactionBody = new Proto.Services.TokenGrantKycTransactionBody
             {
 				Account = testAccountId.ToProtobuf(),
 				Token = testTokenId.ToProtobuf(),

@@ -88,9 +88,9 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-                TokenWipe = new Proto.TokenWipeAccountTransactionBody()
+                TokenWipe = new Proto.Services.TokenWipeAccountTransactionBody()
             };
             
             var tx = Transaction.FromScheduledTransaction<TokenWipeTransaction>(transactionBody);
@@ -99,7 +99,7 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void ConstructTokenWipeTransactionFromTransactionBodyProtobuf()
         {
-            var transactionBody = new Proto.TokenWipeAccountTransactionBody
+            var transactionBody = new Proto.Services.TokenWipeAccountTransactionBody
             {
                 Token = testTokenId.ToProtobuf(),
                 Account = testAccountId.ToProtobuf(),

@@ -52,11 +52,11 @@ namespace Hedera.Hashgraph.TCK.CryptoService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody()
+            var transactionBody = new Proto.Services.SchedulableTransactionBody()
             {
-                CryptoDelete = new Proto.CryptoDeleteTransactionBody
+                CryptoDelete = new Proto.Services.CryptoDeleteTransactionBody
                 {
-                    DeleteAccountID = AccountId.FromString("6.6.6").ToProtobuf()
+                    DeleteAccountId = AccountId.FromString("6.6.6").ToProtobuf()
                 }
             };
             

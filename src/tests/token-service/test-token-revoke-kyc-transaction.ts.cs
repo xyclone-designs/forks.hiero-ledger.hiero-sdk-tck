@@ -55,9 +55,9 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-				TokenRevokeKyc = new Proto.TokenRevokeKycTransactionBody()
+				TokenRevokeKyc = new Proto.Services.TokenRevokeKycTransactionBody()
 			};
 			var tx = Transaction.FromScheduledTransaction(transactionBody);
             Assert.IsType<TokenRevokeKycTransaction>(tx);
@@ -65,7 +65,7 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void ConstructTokenRevokeKycTransactionFromTransactionBodyProtobuf()
         {
-            var transactionBody = new Proto.TokenRevokeKycTransactionBody
+            var transactionBody = new Proto.Services.TokenRevokeKycTransactionBody
             {
 				Account = testAccountId.ToProtobuf(),
 				Token = testTokenId.ToProtobuf()

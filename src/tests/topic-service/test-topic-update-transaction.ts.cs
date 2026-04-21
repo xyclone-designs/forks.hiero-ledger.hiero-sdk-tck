@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 using Hedera.Hashgraph.SDK.Keys;
-using Hedera.Hashgraph.SDK.Topic;
+using Hedera.Hashgraph.SDK.Consensus;
 using Hedera.Hashgraph.SDK.Account;
 using Hedera.Hashgraph.SDK.Transactions;
 using Hedera.Hashgraph.SDK.Token;
@@ -78,9 +78,9 @@ namespace Hedera.Hashgraph.TCK.TopicService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-                ConsensusUpdateTopic = new Proto.ConsensusUpdateTopicTransactionBody()
+                ConsensusUpdateTopic = new Proto.Services.ConsensusUpdateTopicTransactionBody()
             };
             var tx = Transaction.FromScheduledTransaction(transactionBody);
             Assert.IsType<TopicUpdateTransaction>(tx);
@@ -88,14 +88,14 @@ namespace Hedera.Hashgraph.TCK.TopicService
         [Fact]
         public virtual void ConstructTopicUpdateTransactionFromTransactionBodyProtobuf()
         {
-            var transactionBody = new Proto.ConsensusUpdateTopicTransactionBody
+            var transactionBody = new Proto.Services.ConsensusUpdateTopicTransactionBody
             {
-                TopicID = testTopicId.ToProtobuf(),
+                TopicId = testTopicId.ToProtobuf(),
                 Memo = testTopicMemo,
-                ExpirationTime = new Proto.Timestamp { Seconds = testExpirationTime.ToUnixTimeSeconds() },
+                ExpirationTime = new Proto.Services.Timestamp { Seconds = testExpirationTime.ToUnixTimeSeconds() },
                 AdminKey = testAdminKey.ToProtobufKey(),
                 SubmitKey = testSubmitKey.ToProtobufKey(),
-                AutoRenewPeriod = new Proto.Duration { Seconds = (long)testAutoRenewPeriod.TotalSeconds },
+                AutoRenewPeriod = new Proto.Services.Duration { Seconds = (long)testAutoRenewPeriod.TotalSeconds },
                 AutoRenewAccount = testAutoRenewAccountId.ToProtobuf()
             };
             var tx = new Proto.Services.TransactionBody { ConsensusUpdateTopic = transactionBody };
@@ -113,7 +113,7 @@ namespace Hedera.Hashgraph.TCK.TopicService
         // doesn't throw an exception as opposed to C++ sdk
         public virtual void ConstructTopicUpdateTransactionFromWrongTransactionBodyProtobuf()
         {
-            var transactionBody = new Proto.CryptoDeleteTransactionBody { };
+            var transactionBody = new Proto.Services.CryptoDeleteTransactionBody { };
             var tx = new Proto.Services.TransactionBody { CryptoDelete = transactionBody };
             new TopicUpdateTransaction(tx);
         }

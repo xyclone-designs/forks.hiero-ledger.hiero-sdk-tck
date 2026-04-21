@@ -101,7 +101,7 @@ namespace Hedera.Hashgraph.TCK.TokenService
         {
             PendingAirdropId pendingAirdropId = new PendingAirdropId(new AccountId(0, 0, 457), new AccountId(0, 0, 456), new NftId(new TokenId(0, 0, 1234), 123));
             transaction.PendingAirdropIds.Add(pendingAirdropId);
-            Proto.TokenCancelAirdropTransactionBody builder = transaction.ToProtobuf();
+            Proto.Services.TokenCancelAirdropTransactionBody builder = transaction.ToProtobuf();
 
             Assert.Equal(1, builder.PendingAirdrops.Count);
             Assert.Equal(pendingAirdropId.ToProtobuf(), builder.PendingAirdrops[0]);
@@ -123,7 +123,7 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void TestOnScheduled()
         {
-            Proto.SchedulableTransactionBody scheduled = new ();
+            Proto.Services.SchedulableTransactionBody scheduled = new ();
             
             transaction.OnScheduled(scheduled);
             

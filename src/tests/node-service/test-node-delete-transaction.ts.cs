@@ -17,7 +17,8 @@ namespace Hedera.Hashgraph.TCK.NodeService
         private static readonly PrivateKey TEST_PRIVATE_KEY = PrivateKey.FromString("302e020100300506032b657004220420db484b828e64b2d8f12ce3c0a0e93a0b8cce7af1bb8f39c97732394482538e10");
         private static readonly ulong TEST_NODE_ID = 420;
         readonly DateTimeOffset TEST_VALID_START = DateTimeOffset.FromUnixTimeMilliseconds(1554158542);
-        
+        readonly AccountId ACCOUNT_ID = AccountId.FromString("TODO"); // TODO 
+
         public virtual void ShouldSerialize()
         {
             Verifier.Verify(SpawnTestTransaction().ToString());
@@ -54,9 +55,9 @@ namespace Hedera.Hashgraph.TCK.NodeService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-				NodeDelete = new Proto.NodeDeleteTransactionBody()
+				NodeDelete = new Proto.Services.NodeDeleteTransactionBody()
 			};
             var tx = Transaction.FromScheduledTransaction<NodeDeleteTransaction>(transactionBody);
             
@@ -65,7 +66,7 @@ namespace Hedera.Hashgraph.TCK.NodeService
         [Fact]
         public virtual void ConstructNodeDeleteTransactionFromTransactionBodyProtobuf()
         {
-            var transactionBodyBuilder = new Proto.NodeDeleteTransactionBody();
+            var transactionBodyBuilder = new Proto.Services.NodeDeleteTransactionBody();
             transactionBodyBuilder.NodeId = TEST_NODE_ID;
             var tx = new Proto.Services.TransactionBody
             {
@@ -93,7 +94,7 @@ namespace Hedera.Hashgraph.TCK.NodeService
         public virtual void ShouldFreezeSuccessfullyWhenNodeIdIsSet()
         {
             DateTimeOffset VALID_START = DateTimeOffset.FromUnixTimeMilliseconds(1596210382);
-            AccountId ACCOUNT_ID = AccountId.FromString("0.6.9");
+            AccountId ACCOUNT_Id = AccountId.FromString("0.6.9");
             var transaction = new NodeDeleteTransaction
             {
                 NodeAccountIds = [AccountId.FromString("0.0.3")],
@@ -109,7 +110,7 @@ namespace Hedera.Hashgraph.TCK.NodeService
         public virtual void ShouldThrowErrorWhenFreezingWithoutSettingNodeId()
         {
             DateTimeOffset VALID_START = DateTimeOffset.FromUnixTimeMilliseconds(1596210382);
-            AccountId ACCOUNT_ID = AccountId.FromString("0.6.9");
+            AccountId ACCOUNT_Id = AccountId.FromString("0.6.9");
             var transaction = new NodeDeleteTransaction
             {
                 NodeAccountIds = [ AccountId.FromString("0.0.3")],
@@ -123,7 +124,7 @@ namespace Hedera.Hashgraph.TCK.NodeService
         public virtual void ShouldThrowErrorWhenFreezingWithZeroNodeId()
         {
             DateTimeOffset VALID_START = DateTimeOffset.FromUnixTimeMilliseconds(1596210382);
-            AccountId ACCOUNT_ID = AccountId.FromString("0.6.9");
+            AccountId ACCOUNT_Id = AccountId.FromString("0.6.9");
             var transaction = new NodeDeleteTransaction
             {
 				NodeAccountIds = [AccountId.FromString("0.0.3")],
@@ -138,7 +139,7 @@ namespace Hedera.Hashgraph.TCK.NodeService
         public virtual void ShouldFreezeSuccessfullyWithActualClientWhenNodeIdIsSet()
         {
             DateTimeOffset VALID_START = DateTimeOffset.FromUnixTimeMilliseconds(1596210382);
-            AccountId ACCOUNT_ID = AccountId.FromString("0.6.9");
+            AccountId ACCOUNT_Id = AccountId.FromString("0.6.9");
             var transaction = new NodeDeleteTransaction()
             {
 				NodeAccountIds = [AccountId.FromString("0.0.3")],

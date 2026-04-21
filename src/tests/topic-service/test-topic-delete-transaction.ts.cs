@@ -2,7 +2,7 @@
 using System;
 
 using Hedera.Hashgraph.SDK.Keys;
-using Hedera.Hashgraph.SDK.Topic;
+using Hedera.Hashgraph.SDK.Consensus;
 using Hedera.Hashgraph.SDK.Transactions;
 using Hedera.Hashgraph.SDK.HBar;
 using Hedera.Hashgraph.SDK.Account;
@@ -50,9 +50,9 @@ namespace Hedera.Hashgraph.TCK.TopicService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-                ConsensusDeleteTopic = new Proto.ConsensusDeleteTopicTransactionBody { }
+                ConsensusDeleteTopic = new Proto.Services.ConsensusDeleteTopicTransactionBody { }
             };
             var tx = Transaction.FromScheduledTransaction(transactionBody);
             Assert.IsType<TopicDeleteTransaction>(tx);

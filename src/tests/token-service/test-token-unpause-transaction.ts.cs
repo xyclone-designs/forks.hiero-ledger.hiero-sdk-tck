@@ -50,9 +50,9 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-				TokenUnpause = new Proto.TokenUnpauseTransactionBody()
+				TokenUnpause = new Proto.Services.TokenUnpauseTransactionBody()
 			};
             var tx = Transaction.FromScheduledTransaction<TokenUnpauseTransaction>(transactionBody);
             
@@ -63,7 +63,7 @@ namespace Hedera.Hashgraph.TCK.TokenService
         {
             var tx = new Proto.Services.TransactionBody
             {
-				TokenUnpause = new Proto.TokenUnpauseTransactionBody
+				TokenUnpause = new Proto.Services.TokenUnpauseTransactionBody
 				{
 					Token = testTokenId.ToProtobuf()
 				}

@@ -52,9 +52,9 @@ namespace Hedera.Hashgraph.TCK.FileService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-                FileDelete = new Proto.FileDeleteTransactionBody()
+                FileDelete = new Proto.Services.FileDeleteTransactionBody()
             };
 
             var tx = Transaction.FromScheduledTransaction<FileDeleteTransaction>(transactionBody);

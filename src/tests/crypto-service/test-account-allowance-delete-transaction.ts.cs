@@ -57,9 +57,9 @@ namespace Hedera.Hashgraph.TCK.CryptoService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody 
+            var transactionBody = new Proto.Services.SchedulableTransactionBody 
             {
-				CryptoDeleteAllowance = new Proto.CryptoDeleteAllowanceTransactionBody()
+				CryptoDeleteAllowance = new Proto.Services.CryptoDeleteAllowanceTransactionBody()
 			};
             var tx = Transaction.FromScheduledTransaction<AccountAllowanceDeleteTransaction>(transactionBody);
 

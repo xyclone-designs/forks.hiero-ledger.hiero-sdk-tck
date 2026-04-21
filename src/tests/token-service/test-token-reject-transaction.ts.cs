@@ -64,9 +64,9 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-				TokenReject = new Proto.TokenRejectTransactionBody()
+				TokenReject = new Proto.Services.TokenRejectTransactionBody()
 			};
             var tx = Transaction.FromScheduledTransaction<TokenRejectTransaction>(transactionBody);
 
@@ -76,19 +76,19 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void ConstructTokenRejectTransactionFromTransactionBodyProtobuf()
         {
-            var transactionBodyBuilder = new Proto.TokenRejectTransactionBody
+            var transactionBodyBuilder = new Proto.Services.TokenRejectTransactionBody
             {
 				Owner = TEST_OWNER_ID.ToProtobuf()
 			};
             
             foreach (TokenId tokenId in TEST_TOKEN_IDS)
-				transactionBodyBuilder.Rejections.Add(new Proto.TokenReference
+				transactionBodyBuilder.Rejections.Add(new Proto.Services.TokenReference
 				{
 					FungibleToken = tokenId.ToProtobuf()
 				});
 
 			foreach (NftId nftId in TEST_NFT_IDS)
-				transactionBodyBuilder.Rejections.Add(new Proto.TokenReference
+				transactionBodyBuilder.Rejections.Add(new Proto.Services.TokenReference
 				{
 					Nft = nftId.ToProtobuf()
 				});

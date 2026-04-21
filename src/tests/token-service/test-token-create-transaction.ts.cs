@@ -149,7 +149,7 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody { TokenCreation = new Proto.TokenCreateTransactionBody() };
+            var transactionBody = new Proto.Services.SchedulableTransactionBody { TokenCreation = new Proto.Services.TokenCreateTransactionBody() };
             var tx = Transaction.FromScheduledTransaction<TokenCreateTransaction>(transactionBody);
             
             Assert.IsType<TokenCreateTransaction>(tx);
@@ -157,15 +157,15 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void ConstructTokenCreateTransactionFungibleFromTransactionBodyProtobuf()
         {
-            var transactionBody = new Proto.TokenCreateTransactionBody
+            var transactionBody = new Proto.Services.TokenCreateTransactionBody
             {
                 InitialSupply = testInitialSupply,
                 FeeScheduleKey = testFeeScheduleKey.ToProtobufKey(),
                 SupplyKey = testSupplyKey.ToProtobufKey(),
                 AdminKey = testAdminKey.ToProtobufKey(),
                 AutoRenewAccount = testAutoRenewAccountId.ToProtobuf(),
-                AutoRenewPeriod = new Proto.Duration { Seconds = (long)testAutoRenewPeriod.TotalSeconds },
-				Expiry = new Proto.Timestamp { Seconds = testExpirationTime.ToUnixTimeSeconds() },
+                AutoRenewPeriod = new Proto.Services.Duration { Seconds = (long)testAutoRenewPeriod.TotalSeconds },
+				Expiry = new Proto.Services.Timestamp { Seconds = testExpirationTime.ToUnixTimeSeconds() },
 				Decimals = testDecimals,
 				FreezeDefault = testFreezeDefault,
 				FreezeKey = testFreezeKey.ToProtobufKey(),
@@ -205,17 +205,17 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void ConstructTokenCreateTransactionNftFromTransactionBodyProtobuf()
         {
-            var transactionBody = new Proto.TokenCreateTransactionBody
+            var transactionBody = new Proto.Services.TokenCreateTransactionBody
             {
                 FeeScheduleKey = testFeeScheduleKey.ToProtobufKey(),
                 SupplyKey = testSupplyKey.ToProtobufKey(),
                 MaxSupply = testMaxSupply,
                 AdminKey = testAdminKey.ToProtobufKey(),
                 AutoRenewAccount = testAutoRenewAccountId.ToProtobuf(),
-                AutoRenewPeriod = new Proto.Duration { Seconds = (long)testAutoRenewPeriod.TotalSeconds },
-                Expiry = new Proto.Timestamp { Seconds = testExpirationTime.ToUnixTimeSeconds() },
-                TokenType = Proto.TokenType.NonFungibleUnique,
-                SupplyType = Proto.TokenSupplyType.Finite,
+                AutoRenewPeriod = new Proto.Services.Duration { Seconds = (long)testAutoRenewPeriod.TotalSeconds },
+                Expiry = new Proto.Services.Timestamp { Seconds = testExpirationTime.ToUnixTimeSeconds() },
+                TokenType = Proto.Services.TokenType.NonFungibleUnique,
+                SupplyType = Proto.Services.TokenSupplyType.Finite,
                 FreezeKey = testFreezeKey.ToProtobufKey(),
                 WipeKey = testWipeKey.ToProtobufKey(),
                 Symbol = testTokenSymbol,

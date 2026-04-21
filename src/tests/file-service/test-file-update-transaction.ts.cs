@@ -58,9 +58,9 @@ namespace Hedera.Hashgraph.TCK.FileService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-                FileUpdate = new Proto.FileUpdateTransactionBody { }
+                FileUpdate = new Proto.Services.FileUpdateTransactionBody { }
             };
             var tx = Transaction.FromScheduledTransaction<FileUpdateTransaction>(transactionBody);
 

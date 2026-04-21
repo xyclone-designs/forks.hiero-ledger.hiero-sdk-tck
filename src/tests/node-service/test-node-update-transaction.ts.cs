@@ -146,9 +146,9 @@ namespace Hedera.Hashgraph.TCK.NodeService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-                NodeUpdate = new Proto.NodeUpdateTransactionBody()
+                NodeUpdate = new Proto.Services.NodeUpdateTransactionBody()
 			};
             var tx = Transaction.FromScheduledTransaction<NodeUpdateTransaction>(transactionBody);
             
@@ -157,7 +157,7 @@ namespace Hedera.Hashgraph.TCK.NodeService
         [Fact]
         public virtual void ConstructNodeUpdateTransactionFromTransactionBodyProtobuf()
         {
-            var transactionBodyBuilder = new Proto.NodeUpdateTransactionBody
+            var transactionBodyBuilder = new Proto.Services.NodeUpdateTransactionBody
             {
 				NodeId = TEST_NODE_ID,
 				AccountId = TEST_ACCOUNT_ID.ToProtobuf(),

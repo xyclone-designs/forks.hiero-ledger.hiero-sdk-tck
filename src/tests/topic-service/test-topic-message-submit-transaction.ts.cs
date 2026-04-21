@@ -4,7 +4,7 @@ using Hedera.Hashgraph.SDK.Account;
 using Hedera.Hashgraph.SDK.Fees;
 using Hedera.Hashgraph.SDK.Keys;
 using Hedera.Hashgraph.SDK.Token;
-using Hedera.Hashgraph.SDK.Topic;
+using Hedera.Hashgraph.SDK.Consensus;
 using Hedera.Hashgraph.SDK.Transactions;
 using System;
 using System.Collections.Generic;
@@ -54,9 +54,9 @@ namespace Hedera.Hashgraph.TCK.TopicService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-                ConsensusSubmitMessage = new Proto.ConsensusSubmitMessageTransactionBody { }
+                ConsensusSubmitMessage = new Proto.Services.ConsensusSubmitMessageTransactionBody { }
             };
 
             var tx = Transaction.FromScheduledTransaction(transactionBody);
@@ -65,9 +65,9 @@ namespace Hedera.Hashgraph.TCK.TopicService
         [Fact]
         public virtual void ConstructTopicMessageSubmitTransactionFromTransactionBodyProtobuf()
         {
-            var transactionBody = new Proto.ConsensusSubmitMessageTransactionBody
+            var transactionBody = new Proto.Services.ConsensusSubmitMessageTransactionBody
             {
-                TopicID = testTopicId.ToProtobuf(),
+                TopicId = testTopicId.ToProtobuf(),
                 Message = ByteString.CopyFrom(testMessageBytes),
             };
             var tx = new Proto.Services.TransactionBody

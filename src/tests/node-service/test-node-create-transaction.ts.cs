@@ -92,9 +92,9 @@ namespace Hedera.Hashgraph.TCK.NodeService
 		[Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-				NodeCreate = new Proto.NodeCreateTransactionBody()
+				NodeCreate = new Proto.Services.NodeCreateTransactionBody()
 			};
             var tx = Transaction.FromScheduledTransaction<NodeCreateTransaction>(transactionBody);
 
@@ -346,7 +346,7 @@ namespace Hedera.Hashgraph.TCK.NodeService
 		[Fact]
         public virtual void ConstructNodeCreateTransactionFromTransactionBodyProtobuf()
         {
-            var transactionBodyBuilder = new Proto.NodeCreateTransactionBody
+            var transactionBodyBuilder = new Proto.Services.NodeCreateTransactionBody
             {
 				GossipCaCertificate = ByteString.CopyFrom(TEST_GOSSIP_CA_CERTIFICATE),
 				GrpcCertificateHash = ByteString.CopyFrom(TEST_GRPC_CERTIFICATE_HASH),

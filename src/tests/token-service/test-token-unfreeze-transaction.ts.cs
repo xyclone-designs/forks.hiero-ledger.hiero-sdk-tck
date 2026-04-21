@@ -53,9 +53,9 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-				TokenUnfreeze = new Proto.TokenUnfreezeAccountTransactionBody()
+				TokenUnfreeze = new Proto.Services.TokenUnfreezeAccountTransactionBody()
 			};
             var tx = Transaction.FromScheduledTransaction<TokenUnfreezeTransaction>(transactionBody);
            

@@ -51,9 +51,9 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-				TokenDeletion = new Proto.TokenDeleteTransactionBody()
+				TokenDeletion = new Proto.Services.TokenDeleteTransactionBody()
 			};
             var tx = Transaction.FromScheduledTransaction(transactionBody);
             Assert.IsType<TokenDeleteTransaction>(tx);
@@ -69,7 +69,7 @@ namespace Hedera.Hashgraph.TCK.TokenService
         public virtual void ConstructTokenDeleteTransactionFromTransactionBodyProtobuf()
         {
             var tokenId = TokenId.FromString("1.2.3");
-            var transactionBody = new Proto.TokenDeleteTransactionBody
+            var transactionBody = new Proto.Services.TokenDeleteTransactionBody
             {
                 Token = tokenId.ToProtobuf()
             };

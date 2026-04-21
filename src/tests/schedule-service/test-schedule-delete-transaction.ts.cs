@@ -50,9 +50,9 @@ namespace Hedera.Hashgraph.TCK.ScheduleService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-				ScheduleDelete = new Proto.ScheduleDeleteTransactionBody()
+				ScheduleDelete = new Proto.Services.ScheduleDeleteTransactionBody()
 			};
             var tx = Transaction.FromScheduledTransaction<ScheduleDeleteTransaction>(transactionBody);
             

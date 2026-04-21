@@ -94,9 +94,9 @@ namespace Hedera.Hashgraph.TCK.CryptoService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-				CryptoUpdateAccount = new Proto.CryptoUpdateTransactionBody()
+				CryptoUpdateAccount = new Proto.Services.CryptoUpdateTransactionBody()
 			};
             var tx = Transaction.FromScheduledTransaction<AccountUpdateTransaction>(transactionBody);
 

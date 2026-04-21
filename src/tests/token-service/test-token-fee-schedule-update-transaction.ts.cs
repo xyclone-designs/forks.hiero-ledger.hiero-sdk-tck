@@ -66,9 +66,9 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-				TokenFeeScheduleUpdate = new Proto.TokenFeeScheduleUpdateTransactionBody()
+				TokenFeeScheduleUpdate = new Proto.Services.TokenFeeScheduleUpdateTransactionBody()
 			};
             var tx = Transaction.FromScheduledTransaction<TokenFeeScheduleUpdateTransaction>(transactionBody);
             Assert.IsType<TokenFeeScheduleUpdateTransaction>(tx);

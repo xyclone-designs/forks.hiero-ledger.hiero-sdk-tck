@@ -94,9 +94,9 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-				TokenUpdate = new Proto.TokenUpdateTransactionBody()
+				TokenUpdate = new Proto.Services.TokenUpdateTransactionBody()
 			};
 
             var tx = Transaction.FromScheduledTransaction<TokenUpdateTransaction>(transactionBody);
@@ -106,7 +106,7 @@ namespace Hedera.Hashgraph.TCK.TokenService
         [Fact]
         public virtual void ConstructTokenUpdateTransactionFromTransactionBodyProtobuf()
         {
-            var transactionBody = new Proto.TokenUpdateTransactionBody
+            var transactionBody = new Proto.Services.TokenUpdateTransactionBody
             {
                 Token = testTokenId.ToProtobuf(),
                 Name = testTokenName,
@@ -118,11 +118,11 @@ namespace Hedera.Hashgraph.TCK.TokenService
                 WipeKey = testWipeKey.ToProtobufKey(),
                 SupplyKey = testSupplyKey.ToProtobufKey(),
                 AutoRenewAccount = testAutoRenewAccountId.ToProtobuf(),
-                AutoRenewPeriod = new Proto.Duration
+                AutoRenewPeriod = new Proto.Services.Duration
                 {
                     Seconds = (long)testAutoRenewPeriod.TotalSeconds
                 },
-                Expiry = new Proto.Timestamp
+                Expiry = new Proto.Services.Timestamp
                 {
                     Seconds = testExpirationTime.ToUnixTimeSeconds()
                 },
@@ -131,7 +131,7 @@ namespace Hedera.Hashgraph.TCK.TokenService
                 PauseKey = testPauseKey.ToProtobufKey(),
                 MetadataKey = testMetadataKey.ToProtobufKey(),
                 Metadata = ByteString.CopyFrom(testMetadata),
-                KeyVerificationMode = Proto.TokenKeyValidation.NoValidation
+                KeyVerificationMode = Proto.Services.TokenKeyValidation.NoValidation
             };
             
             var tx = new Proto.Services.TransactionBody

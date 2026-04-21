@@ -100,9 +100,9 @@ namespace Hedera.Hashgraph.TCK.ContractService
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-                ContractCreateInstance = new Proto.ContractCreateTransactionBody { }
+                ContractCreateInstance = new Proto.Services.ContractCreateTransactionBody { }
             };
             var tx = Transaction.FromScheduledTransaction(transactionBody);
             Assert.IsType<ContractCreateTransaction>(tx);
