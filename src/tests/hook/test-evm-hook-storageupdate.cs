@@ -99,7 +99,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Hook
         [Fact]
         public virtual void FromProtobufWithoutUpdateThrows()
         {
-            var emptyProto = new Proto.EvmHookStorageUpdate();
+            var emptyProto = new Proto.Services.EvmHookStorageUpdate();
 
             Assert.Throws<ArgumentException>(() => EvmHookStorageUpdate.FromProtobuf(emptyProto));
         }

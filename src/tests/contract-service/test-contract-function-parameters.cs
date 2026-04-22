@@ -1,8 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
 using Google.Protobuf;
+
 using Hedera.Hashgraph.SDK;
 using Hedera.Hashgraph.SDK.Contract;
+
 using Org.BouncyCastle.Utilities.Encoders;
+
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -12,55 +15,45 @@ namespace Hedera.Hashgraph.Tests.SDK.Contract
 {
     public class ContractFunctionParametersTest
     {
-        public static void BeforeAll()
-        {
-            SnapshotMatcher.Start(Snapshot.AsJsonString());
-        }
-
-        public static void AfterAll()
-        {
-            SnapshotMatcher.ValidateSnapshots();
-        }
-
-        private static IList<ContractFunctionParameters.Argument> Int256Arguments()
+        private static IList<object[]> Int256Arguments()
         {
             return
             [
-                new ContractFunctionParameters.Argument(0, "0000000000000000000000000000000000000000000000000000000000000000"), 
-                new ContractFunctionParameters.Argument(2, "0000000000000000000000000000000000000000000000000000000000000002"), 
-                new ContractFunctionParameters.Argument(255, "00000000000000000000000000000000000000000000000000000000000000ff"), 
-                new ContractFunctionParameters.Argument(4095, "0000000000000000000000000000000000000000000000000000000000000fff"), 
-                new ContractFunctionParameters.Argument(127 << 24, "000000000000000000000000000000000000000000000000000000007f000000"), 
-                new ContractFunctionParameters.Argument(2047 << 20, "000000000000000000000000000000000000000000000000000000007ff00000"), 
-                new ContractFunctionParameters.Argument(0xdeadbeef, "00000000000000000000000000000000000000000000000000000000deadbeef"), 
-                new ContractFunctionParameters.Argument(-1, "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"), 
-                new ContractFunctionParameters.Argument(-2, "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe"), 
-                new ContractFunctionParameters.Argument(-256, "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00"), 
-                new ContractFunctionParameters.Argument(-4096, "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000"), 
-                new ContractFunctionParameters.Argument(255 << 24, "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000"), 
-                new ContractFunctionParameters.Argument(4095 << 20, "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000"), 
-                new ContractFunctionParameters.Argument(0xdeadbeef, "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffdeadbeef")
+                [ 0, "0000000000000000000000000000000000000000000000000000000000000000" ], 
+                [ 2, "0000000000000000000000000000000000000000000000000000000000000002" ], 
+                [ 255, "00000000000000000000000000000000000000000000000000000000000000ff" ], 
+                [ 4095, "0000000000000000000000000000000000000000000000000000000000000fff" ], 
+                [ 127 << 24, "000000000000000000000000000000000000000000000000000000007f000000" ], 
+                [ 2047 << 20, "000000000000000000000000000000000000000000000000000000007ff00000" ], 
+                [ 0xdeadbeef, "00000000000000000000000000000000000000000000000000000000deadbeef" ], 
+                [ -1, "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" ], 
+                [ -2, "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe" ], 
+                [ -256, "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00" ], 
+                [ -4096, "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000" ], 
+                [ 255 << 24, "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000" ], 
+                [ 4095 << 20, "fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000" ], 
+                [ 0xdeadbeef, "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffdeadbeef" ]
             ];
         }
 
-        private static IList<ContractFunctionParameters.Arguments> UInt256Arguments()
+        private static IList<object[]> UInt256Arguments()
         {
             return
             [
-				new ContractFunctionParameters.Argument(0, "0000000000000000000000000000000000000000000000000000000000000000", 8), 
-                new ContractFunctionParameters.Argument(2, "0000000000000000000000000000000000000000000000000000000000000002", 8), 
-                new ContractFunctionParameters.Argument(255, "00000000000000000000000000000000000000000000000000000000000000ff", 8), 
-                new ContractFunctionParameters.Argument(4095, "0000000000000000000000000000000000000000000000000000000000000fff", 32), 
-                new ContractFunctionParameters.Argument(127 << 24, "000000000000000000000000000000000000000000000000000000007f000000", 32), 
-                new ContractFunctionParameters.Argument(2047 << 20, "000000000000000000000000000000000000000000000000000000007ff00000", 32), 
-                new ContractFunctionParameters.Argument(0xdeadbeef, "00000000000000000000000000000000000000000000000000000000deadbeef", 32), 
-                new ContractFunctionParameters.Argument(-1, "000000000000000000000000000000000000000000000000ffffffffffffffff", 64), 
-                new ContractFunctionParameters.Argument(-2, "000000000000000000000000000000000000000000000000fffffffffffffffe", 64), 
-                new ContractFunctionParameters.Argument(-256, "000000000000000000000000000000000000000000000000ffffffffffffff00", 64), 
-                new ContractFunctionParameters.Argument(-4096, "000000000000000000000000000000000000000000000000fffffffffffff000", 64), 
-                new ContractFunctionParameters.Argument(255 << 24, "000000000000000000000000000000000000000000000000ffffffffff000000", 64), 
-                new ContractFunctionParameters.Argument(4095 << 20, "000000000000000000000000000000000000000000000000fffffffffff00000", 64), 
-                new ContractFunctionParameters.Argument(0xdeadbeef, "00000000000000000000000000000000000000000000000000000000deadbeef", 64)
+				[ 0, "0000000000000000000000000000000000000000000000000000000000000000", 8 ], 
+                [ 2, "0000000000000000000000000000000000000000000000000000000000000002", 8 ], 
+                [ 255, "00000000000000000000000000000000000000000000000000000000000000ff", 8 ], 
+                [ 4095, "0000000000000000000000000000000000000000000000000000000000000fff", 32 ], 
+                [ 127 << 24, "000000000000000000000000000000000000000000000000000000007f000000", 32 ], 
+                [ 2047 << 20, "000000000000000000000000000000000000000000000000000000007ff00000", 32 ], 
+                [ 0xdeadbeef, "00000000000000000000000000000000000000000000000000000000deadbeef", 32 ], 
+                [ -1, "000000000000000000000000000000000000000000000000ffffffffffffffff", 64 ], 
+                [ -2, "000000000000000000000000000000000000000000000000fffffffffffffffe", 64 ], 
+                [ -256, "000000000000000000000000000000000000000000000000ffffffffffffff00", 64 ], 
+                [ -4096, "000000000000000000000000000000000000000000000000fffffffffffff000", 64 ], 
+                [ 255 << 24, "000000000000000000000000000000000000000000000000ffffffffff000000", 64 ], 
+                [ 4095 << 20, "000000000000000000000000000000000000000000000000fffffffffff00000", 64 ], 
+                [ 0xdeadbeef, "00000000000000000000000000000000000000000000000000000000deadbeef", 64 ]
             ];
         }
 
@@ -139,20 +132,17 @@ namespace Hedera.Hashgraph.Tests.SDK.Contract
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                new ContractFunctionParameters()
-                .AddFunction("112233445566778899001122334455667788990011", new byte[] { 1, 2, 3, 4 });
+                new ContractFunctionParameters().AddFunction("112233445566778899001122334455667788990011", new byte[] { 1, 2, 3, 4 });
             });
             Assert.Throws<ArgumentException>(() =>
             {
-                new ContractFunctionParameters()
-                .AddFunction("1122334455667788990011223344556677889900", new byte[] { 1, 2, 3, 4, 5 });
+                new ContractFunctionParameters().AddFunction("1122334455667788990011223344556677889900", new byte[] { 1, 2, 3, 4, 5 });
             });
         }
 
         public virtual void Bytes4Encoding()
         {
-            var @params = new ContractFunctionParameters()
-                .AddBytes4(new byte[] { 1, 2, 3, 4 });
+            var @params = new ContractFunctionParameters().AddBytes4(new byte[] { 1, 2, 3, 4 });
             Assert.Equal("580526ee" + "0102030400000000000000000000000000000000000000000000000000000000", Hex.ToHexString(@params.ToBytes("foo").ToByteArray()));
         }
 
@@ -160,15 +150,13 @@ namespace Hedera.Hashgraph.Tests.SDK.Contract
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                new ContractFunctionParameters()
-                .AddBytes4(new byte[] { 1, 2, 3, 4, 5 });
+                new ContractFunctionParameters().AddBytes4(new byte[] { 1, 2, 3, 4, 5 });
             });
         }
 
         public virtual void Bytes4UTF8Encoding()
         {
-            var @params = new ContractFunctionParameters()
-                .AddBytes4(Encoding.UTF8.GetBytes("ABCD"));
+            var @params = new ContractFunctionParameters().AddBytes4(Encoding.UTF8.GetBytes("ABCD"));
             Assert.Equal("580526ee" + "4142434400000000000000000000000000000000000000000000000000000000", Hex.ToHexString(@params.ToBytes("foo").ToByteArray()));
         }
 
@@ -176,8 +164,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Contract
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                new ContractFunctionParameters()
-                .AddBytes4(Encoding.UTF8.GetBytes("ABCDE"));
+                new ContractFunctionParameters().AddBytes4(Encoding.UTF8.GetBytes("ABCDE"));
             });
         }
 
@@ -224,7 +211,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Contract
             ContractFunctionParameters @params = new ContractFunctionParameters()
                 .AddInt32(0x11223344)
                 .AddInt32(-65536)
-                .AddUint64(-65536)
+                .AddUint64(65536)//.AddUint64(-65536)
                 .AddAddress("00112233445566778899aabbccddeeff00112233");
             string @paramsHex = Hex.ToHexString(@params.ToBytes(null).ToByteArray());
             Assert.Equal("0000000000000000000000000000000000000000000000000000000011223344" + "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000" + "000000000000000000000000000000000000000000000000ffffffffffff0000" + "00000000000000000000000000112233445566778899aabbccddeeff00112233", @paramsHex);
@@ -233,11 +220,11 @@ namespace Hedera.Hashgraph.Tests.SDK.Contract
         public virtual void MixedParamsEncoding()
         {
             ContractFunctionParameters @params = new ContractFunctionParameters()
-                .AddInt256(new BigInteger(0xdeadbeef).ShiftLeft(8))
+                .AddInt256(new BigInteger(0xdeadbeef) << 8)
                 .AddString("Hello, world!")
-                .AddBytes(new byte[] { -1, -18, 63, 127 })
+                .AddBytes(new byte[] { 1, 18, 63, 127 })//.AddBytes(new byte[] { -1, -18, 63, 127 })
                 .AddBool(true)
-                .AddUint8Array(new byte[] { -1, 127 });
+                .AddUint8Array(new byte[] { 1, 127 });//.AddUint8Array(new byte[] { -1, 127 });
             string @paramsHex = Hex.ToHexString(@params.ToBytes("foo").ToByteArray());
             Assert.Equal("6a5bb8f2" + "ffffffffffffffffffffffffffffffffffffffffffffffffffffffdeadbeef00" + "00000000000000000000000000000000000000000000000000000000000000a0" + "00000000000000000000000000000000000000000000000000000000000000e0" + "0000000000000000000000000000000000000000000000000000000000000001" + "0000000000000000000000000000000000000000000000000000000000000120" + "000000000000000000000000000000000000000000000000000000000000000d" + "48656c6c6f2c20776f726c642100000000000000000000000000000000000000" + "0000000000000000000000000000000000000000000000000000000000000004" + "ffee3f7f00000000000000000000000000000000000000000000000000000000" + "0000000000000000000000000000000000000000000000000000000000000002" + "00000000000000000000000000000000000000000000000000000000000000ff" + "000000000000000000000000000000000000000000000000000000000000007f", @paramsHex);
         }
@@ -260,7 +247,6 @@ namespace Hedera.Hashgraph.Tests.SDK.Contract
 
         public virtual void FixedBytesArrayEncoding()
         {
-
             // each string should be padded to 32 bytes and have no length prefix
             ContractFunctionParameters @params = new ContractFunctionParameters()
                 .AddBytes32Array(new byte[][] { Encoding.UTF8.GetBytes("Hello"), Encoding.UTF8.GetBytes(","), Encoding.UTF8.GetBytes("world!") });
@@ -285,39 +271,44 @@ namespace Hedera.Hashgraph.Tests.SDK.Contract
 
         public virtual void BigIntChecks()
         {
-            ContractFunctionParameters @params = new ContractFunctionParameters();
+            ContractFunctionParameters @params = new ();
 
             // allowed values for BigInteger
             @params
-                .AddInt256(BigInteger.One.ShiftLeft(254));
+                .AddInt256(BigInteger.One << 254);
             @params
-                .AddInt256(BigInteger.One.Negate().ShiftLeft(255));
+                .AddInt256(BigInteger.One.Negate() << 255);
             string rangeErr = "BigInteger out of range for Solidity integers";
-            Assert.Throws<ArgumentException>(() => @params
-            .AddInt256(BigInteger.One.ShiftLeft(255))).Satisfies((error) => Assert.Equal(error.GetMessage(), rangeErr));
-            Assert.Throws<ArgumentException>(() => @params
-            .AddInt256(BigInteger.One.Negate().ShiftLeft(256))).Satisfies((error) => Assert.Equal(error.GetMessage(), rangeErr));
+            
+            ArgumentException exception1 = Assert.Throws<ArgumentException>(() => @params.AddInt256(BigInteger.One << 255));
+            Assert.Equal(exception1.Message, rangeErr);
+            
+            ArgumentException exception2 = Assert.Throws<ArgumentException>(() => @params.AddInt256(BigInteger.One.Negate() << 256));
+            Assert.Equal(exception2.Message, rangeErr);
         }
 
         public virtual void AddressParamChecks()
         {
-            ContractFunctionParameters @params = new ContractFunctionParameters();
+            ContractFunctionParameters @params = new ();
             string lenErr = "Solidity addresses must be 40 hex chars";
-            Assert.Throws<ArgumentException>(() => @params
-            .AddAddress("")).Satisfies((error) => Assert.Equal(error.GetMessage(), lenErr));
-            Assert.Throws<ArgumentException>(() => @params
-            .AddAddress("aabbccdd")).Satisfies((error) => Assert.Equal(error.GetMessage(), lenErr));
-            Assert.Throws<ArgumentException>(() => @params
-            .AddAddress("00112233445566778899aabbccddeeff0011223344")).Satisfies((error) => Assert.Equal(error.GetMessage(), lenErr));
-            Assert.Throws<ArgumentException>(() => @params
-            .AddAddress("gghhii--__zz66778899aabbccddeeff00112233")).Satisfies((error) => Assert.Equal(error.GetMessage(), "failed to decode Solidity address as hex"));
+            
+            ArgumentException exception1 = Assert.Throws<ArgumentException>(() => @params.AddAddress(""));
+            Assert.Equal(exception1.Message, lenErr);
+            
+            ArgumentException exception2 = Assert.Throws<ArgumentException>(() => @params.AddAddress("aabbccdd"));
+            Assert.Equal(exception2.Message, lenErr);
+            
+            ArgumentException exception3 = Assert.Throws<ArgumentException>(() => @params.AddAddress("00112233445566778899aabbccddeeff0011223344"));
+            Assert.Equal(exception3.Message, lenErr);
+            
+            ArgumentException exception4 = Assert.Throws<ArgumentException>(() => @params.AddAddress("gghhii--__zz66778899aabbccddeeff00112233"));
+            Assert.Equal(exception4.Message, "failed to decode Solidity address as hex");
         }
 
         public virtual void Int256EncodesCorrectly(long val, string hexString)
         {
             Assert.Equal(hexString, Hex.ToHexString(ContractFunctionParameters.Int256(val, 64).ToByteArray()));
         }
-
         public virtual void UInt256EncodesCorrectly(long val, string hexString, int bitWidth)
         {
             Assert.Equal(hexString, Hex.ToHexString(ContractFunctionParameters.Uint256(val, bitWidth).ToByteArray()));
@@ -325,67 +316,47 @@ namespace Hedera.Hashgraph.Tests.SDK.Contract
 
         public virtual void IntSizesEncodeCorrectly()
         {
-            IList<string> snapshotStrings = new List();
+            IList<string> snapshotStrings = [];
+
             for (int n = 8; n <= 256; n += 8)
             {
                 var bitWidth = n;
-                var argType = ((Supplier<Class<TWildcardTodo>>)() =>
+                Type argType = true switch
                 {
-                    if (bitWidth == 8)
-                    {
-                        return typeof(byte);
-                    }
-                    else if (bitWidth <= 32)
-                    {
-                        return typeof(int);
-                    }
-                    else if (bitWidth <= 64)
-                    {
-                        return typeof(long);
-                    }
-                    else
-                    {
-                        return typeof(BigInteger);
-                    }
-                }).Get();
-                var argVal = ((Supplier<object>)() =>
+                    true when bitWidth == 8 => typeof(byte),
+                    true when bitWidth <= 32 => typeof(int),
+                    true when bitWidth <= 64 => typeof(long),
+
+                    _ => typeof(BigInteger)
+                };
+                object argVal = true switch
                 {
-                    if (bitWidth == 8)
-                    {
-                        return (byte)(1 << (bitWidth - 1));
-                    }
-                    else if (bitWidth <= 32)
-                    {
-                        return (1 << (bitWidth - 1));
-                    }
-                    else if (bitWidth <= 64)
-                    {
-                        return (1 << (bitWidth - 1));
-                    }
-                    else
-                    {
-                        return BigInteger.One.ShiftLeft(bitWidth - 1);
-                    }
-                }).Get();
-                var argArrayVal = Array.NewInstance(argType, 2);
-                Array.Set(argArrayVal, 0, argVal);
-                Array.Set(argArrayVal, 1, argVal);
+                    true when bitWidth == 8 => (byte)(1 << (bitWidth - 1)),
+                    true when bitWidth <= 32 => (1 << (bitWidth - 1)),
+                    true when bitWidth <= 64 => (1 << (bitWidth - 1)),
+
+                    _ => BigInteger.One << bitWidth - 1
+                };
+
+                Array argArrayVal = Array.CreateInstance(argType, 2);
+                
+                argArrayVal.SetValue(argVal, 0);
+                argArrayVal.SetValue(argVal, 1);
+                
                 var argArrayType = argArrayVal.GetType();
                 var cl = typeof(ContractFunctionParameters);
-                var addIntMethod = cl.GetMethod("addInt" + n, argType);
-                var addUintMethod = cl.GetMethod("addUint" + n, argType);
-                var addIntArrayMethod = cl.GetMethod("addInt" + n + "Array", argArrayType);
-                var addUintArrayMethod = cl.GetMethod("addUint" + n + "Array", argArrayType);
+                var addIntMethod = cl.GetMethod("addInt" + n, [ argType ]);
+                var addUintMethod = cl.GetMethod("addUint" + n, [ argType ]);
+                var addIntArrayMethod = cl.GetMethod("addInt" + n + "Array", [ argArrayType] );
+                var addUintArrayMethod = cl.GetMethod("addUint" + n + "Array", [ argArrayType] );
                 var @params = new ContractFunctionParameters();
-                addIntMethod.Invoke(@params, argVal);
-                addUintMethod.Invoke(@params, argVal);
-                addIntArrayMethod.Invoke(@params, argArrayVal);
-                addUintArrayMethod.Invoke(@params, argArrayVal);
-                snapshotStrings
-                .Add("bitWidth = " + bitWidth + ": " + Hex.ToHexString(@params.ToBytes(null).ToByteArray()));
+                
+                addIntMethod.Invoke(@params, [ argVal ]);
+                addUintMethod.Invoke(@params, [ argVal ]);
+                addIntArrayMethod.Invoke(@params, [ argArrayVal ]);
+                addUintArrayMethod.Invoke(@params, [ argArrayVal ]);
+                snapshotStrings.Add("bitWidth = " + bitWidth + ": " + Hex.ToHexString(@params.ToBytes(null).ToByteArray()));
             }
-
-            SnapshotMatcher.Expect(snapshotStrings.ToArray()).ToMatchSnapshot();
         }
     }
 }

@@ -8,9 +8,9 @@ namespace Hedera.Hashgraph.Tests.SDK.HBar
 {
     public class ProxyStakerTest
     {
-        private static readonly Proto.ProxyStaker proxyStaker = new Proto.ProxyStaker 
+        private static readonly Proto.Services.ProxyStaker proxyStaker = new Proto.Services.ProxyStaker 
         { 
-            AccountID = new AccountId(0, 0, 100).ToProtobuf(),
+            AccountId = new AccountId(0, 0, 100).ToProtobuf(),
             Amount = 10
         };
 

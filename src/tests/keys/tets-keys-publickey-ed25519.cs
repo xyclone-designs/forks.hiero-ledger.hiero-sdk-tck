@@ -6,6 +6,7 @@ using Hedera.Hashgraph.SDK.HBar;
 using System.Numerics;
 using Hedera.Hashgraph.SDK.Transactions;
 using Hedera.Hashgraph.SDK;
+using Hedera.Hashgraph.Reference;
 
 namespace Hedera.Hashgraph.Tests.SDK.Keys
 {

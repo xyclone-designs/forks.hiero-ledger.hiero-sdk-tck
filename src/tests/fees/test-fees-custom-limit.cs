@@ -14,7 +14,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Fees
     {
         private static readonly AccountId TEST_PAYER_ID = new AccountId(0, 0, 1234);
         // Creating a sample FixedFee protobuf for testing
-        private static readonly Proto.FixedFee TEST_FIXED_FEE_PROTO = new Proto.FixedFee { Amount = 1000 };
+        private static readonly Proto.Services.FixedFee TEST_FIXED_FEE_PROTO = new Proto.Services.FixedFee { Amount = 1000 };
         // Using fromProtobuf() to properly initialize CustomFixedFee
         private static readonly CustomFixedFee TEST_CUSTOM_FIXED_FEE = CustomFixedFee.FromProtobuf(TEST_FIXED_FEE_PROTO);
         private static readonly List<CustomFixedFee> TEST_FEES = [TEST_CUSTOM_FIXED_FEE];
@@ -35,7 +35,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Fees
         private static CustomFeeLimit CreateTestCustomFeeLimit()
         {
             // Step 1: Build the Protobuf representation
-            var proto = new Proto.CustomFeeLimit
+            var proto = new Proto.Services.CustomFeeLimit
             {
                 AccountId = TEST_PAYER_ID.ToProtobuf(),
                 Fees = { TEST_FEES.Select(_ => _.ToFixedFeeProtobuf()) }
@@ -95,7 +95,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Fees
         [Fact]
         public virtual void TestFromProtobuf()
         {
-            var proto = new Proto.CustomFeeLimit
+            var proto = new Proto.Services.CustomFeeLimit
             {
 				AccountId = TEST_PAYER_ID.ToProtobuf(),
                 Fees = { TEST_FEES.Select(_ => _.ToFixedFeeProtobuf()) }   

@@ -82,9 +82,9 @@ namespace Hedera.Hashgraph.Tests.SDK.System
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-				SystemDelete = new Proto.SystemDeleteTransactionBody()
+				SystemDelete = new Proto.Services.SystemDeleteTransactionBody()
 			};
             var tx = Transaction.FromScheduledTransaction<SystemDeleteTransaction>(transactionBody);
 
@@ -93,15 +93,15 @@ namespace Hedera.Hashgraph.Tests.SDK.System
         [Fact]
         public virtual void ConstructSystemDeleteTransactionFromTransactionBodyProtobuf()
         {
-            var transactionBodyWithFileId = new Proto.SystemDeleteTransactionBody
+            var transactionBodyWithFileId = new Proto.Services.SystemDeleteTransactionBody
             {
-                FileID = testFileId.ToProtobuf(),
-                ExpirationTime = new Proto.TimestampSeconds { Seconds = validStart.ToUnixTimeSeconds() }
+                FileId = testFileId.ToProtobuf(),
+                ExpirationTime = new Proto.Services.TimestampSeconds { Seconds = validStart.ToUnixTimeSeconds() }
             };
-            var transactionBodyWithContractId = new Proto.SystemDeleteTransactionBody
+            var transactionBodyWithContractId = new Proto.Services.SystemDeleteTransactionBody
             {
-                ContractID = testContractId.ToProtobuf(),
-                ExpirationTime = new Proto.TimestampSeconds { Seconds = validStart.ToUnixTimeSeconds() }
+                ContractId = testContractId.ToProtobuf(),
+                ExpirationTime = new Proto.Services.TimestampSeconds { Seconds = validStart.ToUnixTimeSeconds() }
             };
             var txWithFileId = new Proto.Services.TransactionBody
             {

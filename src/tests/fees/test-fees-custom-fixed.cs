@@ -14,7 +14,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Fees
         private static readonly AccountId feeCollectorAccountId = new AccountId(1, 2, 3);
         private static readonly long amount = 4;
         private static readonly TokenId tokenId = new TokenId(5, 6, 7);
-        private readonly Proto.FixedFee fee = new Proto.FixedFee
+        private readonly Proto.Services.FixedFee fee = new Proto.Services.FixedFee
         {
 			Amount = amount,
 			DenominatingTokenId = tokenId.ToProtobuf(),

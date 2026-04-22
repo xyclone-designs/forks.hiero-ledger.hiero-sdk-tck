@@ -11,7 +11,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Contract
 {
     public class ContractNonceInfoTest
     {
-        private readonly Proto.ContractNonceInfo info = new Proto.ContractNonceInfo
+        private readonly Proto.Services.ContractNonceInfo info = new Proto.Services.ContractNonceInfo
         {
 			ContractId = new ContractId(0, 0, 1).ToProtobuf(),
 			Nonce = 2,

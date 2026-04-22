@@ -62,9 +62,9 @@ namespace Hedera.Hashgraph.Tests.SDK.Transactions
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-                Freeze = new Proto.FreezeTransactionBody()
+                Freeze = new Proto.Services.FreezeTransactionBody()
             };
             var tx = Transaction.FromScheduledTransaction<FreezeTransaction>(transactionBody);
 
@@ -73,12 +73,12 @@ namespace Hedera.Hashgraph.Tests.SDK.Transactions
         [Fact]
         public virtual void ConstructFreezeTransactionFromTransactionBodyProtobuf()
         {
-            var transactionBody = new Proto.FreezeTransactionBody
+            var transactionBody = new Proto.Services.FreezeTransactionBody
 			{
 				UpdateFile = testFileId.ToProtobuf(),
-                FreezeType = (Proto.FreezeType)testFreezeType,
+                FreezeType = (Proto.Services.FreezeType)testFreezeType,
 				FileHash = ByteString.CopyFrom(testFileHash),
-                StartTime = new Proto.Timestamp 
+                StartTime = new Proto.Services.Timestamp 
                 {
                     Seconds = validStart.ToUnixTimeSeconds() 
                 }

@@ -15,11 +15,11 @@ namespace Hedera.Hashgraph.Tests.SDK.Contract
 {
     public class ContractInfoTest
     {
-        private readonly Proto.ContractGetInfoResponse.Types.ContractInfo info = new Proto.ContractGetInfoResponse.Types.ContractInfo
+        private readonly Proto.Services.ContractGetInfoResponse.Types.ContractInfo info = new Proto.Services.ContractGetInfoResponse.Types.ContractInfo
         {
-			ContractID = new ContractId(0, 0, 1).ToProtobuf(),
-			AccountID = new AccountId(0, 0, 2).ToProtobuf(),
-			ContractAccountID = "3",
+			ContractId = new ContractId(0, 0, 1).ToProtobuf(),
+			AccountId = new AccountId(0, 0, 2).ToProtobuf(),
+			ContractAccountId = "3",
 			ExpirationTime = DateTimeOffset.UnixEpoch.AddMilliseconds(4).ToProtoTimestamp(),
 			AutoRenewPeriod = TimeSpan.FromDays(5).ToProtoDuration(),
 			Storage = 6,

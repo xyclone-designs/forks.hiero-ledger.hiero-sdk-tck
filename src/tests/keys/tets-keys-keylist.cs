@@ -15,10 +15,10 @@ namespace Hedera.Hashgraph.Tests.SDK.Keys
         {
 
             // Given
-            var protoKey1 = new Proto.Key { Ed25519 = ByteString.CopyFrom(mTestPublicKey1.ToBytes()) };
-            var protoKey3 = new Proto.Key { Ed25519 = ByteString.CopyFrom(mTestPublicKey2.ToBytes()) };
-            var protoKey2 = new Proto.Key { Ed25519 = ByteString.CopyFrom(mTestPublicKey3.ToBytes()) };
-            var protoKeyList = new Proto.KeyList();
+            var protoKey1 = new Proto.Services.Key { Ed25519 = ByteString.CopyFrom(mTestPublicKey1.ToBytes()) };
+            var protoKey3 = new Proto.Services.Key { Ed25519 = ByteString.CopyFrom(mTestPublicKey2.ToBytes()) };
+            var protoKey2 = new Proto.Services.Key { Ed25519 = ByteString.CopyFrom(mTestPublicKey3.ToBytes()) };
+            var protoKeyList = new Proto.Services.KeyList();
             protoKeyList.Keys.AddRange([protoKey1, protoKey2, protoKey3]);
 
             // When

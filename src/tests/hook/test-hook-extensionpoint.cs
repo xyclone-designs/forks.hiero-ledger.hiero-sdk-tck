@@ -12,7 +12,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Hook
         {
             foreach (HookExtensionPoint value in Enum.GetValues<HookExtensionPoint>())
             {
-                var proto = (Proto.HookExtensionPoint)value;
+                var proto = (Proto.Services.HookExtensionPoint)value;
                 
                 Assert.NotNull(proto);
 
@@ -27,7 +27,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Hook
         {
 			foreach (HookExtensionPoint value in Enum.GetValues<HookExtensionPoint>())
 			{
-				var proto = (Proto.HookExtensionPoint)value;
+				var proto = (Proto.Services.HookExtensionPoint)value;
 
 				// basic sanity: ordinal-like mapping should not be negative
 				Assert.True((int)proto >= 0);

@@ -39,9 +39,9 @@ namespace Hedera.Hashgraph.Tests.SDK.Transactions
                 transactionId: TransactionId.WithValidStart(AccountId.FromString("3.3.3"), time),
                 transactionMemo: "memo",
                 transactionFee: 3000,
-                contractFunctionResult: new ContractFunctionResult(new Proto.ContractFunctionResult
+                contractFunctionResult: new ContractFunctionResult(new Proto.Services.ContractFunctionResult
                 {
-                    ContractID = ContractId.FromString("1.2.3").ToProtobuf(),
+                    ContractId = ContractId.FromString("1.2.3").ToProtobuf(),
                     ContractCallResult = ByteString.CopyFrom(callResult),
                     EvmAddress = ByteString.CopyFrom(Hex.Decode("98329e006610472e6B372C080833f6D79ED833cf")),
                     SenderId = AccountId.FromString("1.2.3").ToProtobuf(),

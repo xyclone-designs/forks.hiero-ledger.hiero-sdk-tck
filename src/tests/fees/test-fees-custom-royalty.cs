@@ -13,10 +13,10 @@ namespace Hedera.Hashgraph.Tests.SDK.Fees
         private static readonly int numerator = 4;
         private static readonly int denominator = 5;
         private static readonly CustomFixedFee fallbackFee = new CustomFixedFee { Amount = 6 };
-        private readonly Proto.RoyaltyFee fee = new Proto.RoyaltyFee
+        private readonly Proto.Services.RoyaltyFee fee = new Proto.Services.RoyaltyFee
         {
-            FallbackFee = new Proto.FixedFee { Amount = 6 },
-            ExchangeValueFraction = new Proto.Fraction
+            FallbackFee = new Proto.Services.FixedFee { Amount = 6 },
+            ExchangeValueFraction = new Proto.Services.Fraction
             {
                 Numerator = numerator,
                 Denominator = denominator,

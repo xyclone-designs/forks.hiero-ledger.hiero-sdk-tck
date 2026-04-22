@@ -218,8 +218,8 @@ namespace Hedera.Hashgraph.Tests.SDK.Token
             Assert.Equal(tokenInfoProto.TokenInfo.AutoRenewPeriod.Seconds, testAutoRenewPeriod.TotalSeconds);
             Assert.Equal(tokenInfoProto.TokenInfo.Expiry.Seconds, testExpirationTime.ToUnixTimeSeconds());
             Assert.Equal(tokenInfoProto.TokenInfo.Memo, testTokenMemo);
-            Assert.Equal(tokenInfoProto.TokenInfo.TokenType, (Proto.TokenType)testTokenType);
-            Assert.Equal(tokenInfoProto.TokenInfo.SupplyType, (Proto.TokenSupplyType)testTokenSupplyType);
+            Assert.Equal(tokenInfoProto.TokenInfo.TokenType, (Proto.Services.TokenType)testTokenType);
+            Assert.Equal(tokenInfoProto.TokenInfo.SupplyType, (Proto.Services.TokenSupplyType)testTokenSupplyType);
             Assert.Equal(tokenInfoProto.TokenInfo.MaxSupply, testTokenMaxSupply);
             Assert.Equal(tokenInfoProto.TokenInfo.FeeScheduleKey.Ed25519.ToByteArray(), testFeeScheduleKey.ToBytesRaw());
 			Assert.Equal(tokenInfoProto.TokenInfo.CustomFees.Count, testTokenCustomFees.Count);

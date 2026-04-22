@@ -128,7 +128,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Account
             // Verify hook creation details are included
             Assert.Equal(1, protoBody.HookCreationDetails.Count);
             var protoHookDetails = protoBody.HookCreationDetails[0];
-            Assert.Equal(Proto.HookExtensionPoint.AccountAllowanceHook, protoHookDetails.ExtensionPoint);
+            Assert.Equal(Proto.Services.HookExtensionPoint.AccountAllowanceHook, protoHookDetails.ExtensionPoint);
             Assert.Equal(1, protoHookDetails.HookId);
             Assert.True(protoHookDetails.EvmHook is not null);
         }

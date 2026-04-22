@@ -4,7 +4,7 @@ using Google.Protobuf;
 using Hedera.Hashgraph.SDK.Account;
 using Hedera.Hashgraph.SDK.HBar;
 using Hedera.Hashgraph.SDK.Keys;
-using Hedera.Hashgraph.SDK.Topic;
+using Hedera.Hashgraph.SDK.Consensus;
 using Hedera.Hashgraph.SDK.Transactions;
 
 using System;
@@ -53,9 +53,9 @@ namespace Hedera.Hashgraph.Tests.SDK.Transactions
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-                ConsensusSubmitMessage = new Proto.ConsensusSubmitMessageTransactionBody()
+                ConsensusSubmitMessage = new Proto.Services.ConsensusSubmitMessageTransactionBody()
 			};
             var tx = Transaction.FromScheduledTransaction<TopicMessageSubmitTransaction>(transactionBody);
 

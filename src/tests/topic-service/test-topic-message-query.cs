@@ -5,7 +5,7 @@ using Grpc.Core;
 
 using Hedera.Hashgraph.SDK;
 using Hedera.Hashgraph.SDK.Account;
-using Hedera.Hashgraph.SDK.Topic;
+using Hedera.Hashgraph.SDK.Consensus;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -32,7 +32,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Topic
 
             server = new Server
             {
-                Services = { Proto.ConsensusService.BindService(consensusServiceStub) },
+                Services = { Proto.Mirror.ConsensusService.BindService(consensusServiceStub) },
                 Ports = { new ServerPort("localhost", 1000, ServerCredentials.Insecure) }
             };
             server.Start();
@@ -72,8 +72,8 @@ namespace Hedera.Hashgraph.Tests.SDK.Topic
         [Fact]
         public virtual void SubscribeChunked()
         {
-            Proto.ConsensusTopicResponse response1 = Response(1, 2);
-            Proto.ConsensusTopicResponse response2 = Response(2, 2);
+            Proto.Mirror.ConsensusTopicResponse response1 = Response(1, 2);
+            Proto.Mirror.ConsensusTopicResponse response2 = Response(2, 2);
 
             consensusServiceStub.requests.Enqueue(Request());
             consensusServiceStub.responses.Enqueue(response1);
@@ -87,7 +87,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Topic
             Assert.Single(received);
             var first = received[0];
             Assert.Equal(response2.ConsensusTimestamp.ToDateTimeOffset(), first.ConsensusTimestamp);
-            Assert.Equal(response2.ChunkInfo.InitialTransactionID, first.TransactionId.ToProtobuf());
+            Assert.Equal(response2.ChunkInfo.InitialTransactionId, first.TransactionId.ToProtobuf());
             Assert.Equal(message, first.Contents);
             Assert.Equal(response2.RunningHash.ToByteArray(), first.RunningHash);
             Assert.Equal(response2.SequenceNumber, first.SequenceNumber);
@@ -124,9 +124,9 @@ namespace Hedera.Hashgraph.Tests.SDK.Topic
         [InlineData(StatusCode.OK, "")]
         public virtual void RetryRecovers(StatusCode code, string description)
         {
-            Proto.ConsensusTopicResponse response = Response(1);
+            Proto.Mirror.ConsensusTopicResponse response = Response(1);
             DateTimeOffset nextTimestamp = response.ConsensusTimestamp.ToDateTimeOffset().AddTicks(1);
-            Proto.ConsensusTopicQuery request = Request();
+            Proto.Mirror.ConsensusTopicQuery request = Request();
 
             var retryRequest = Request();
             retryRequest.ConsensusStartTime = nextTimestamp.ToProtoTimestamp();
@@ -176,9 +176,9 @@ namespace Hedera.Hashgraph.Tests.SDK.Topic
         [Fact]
         public virtual void RetryWithLimit()
         {
-            Proto.ConsensusTopicResponse response = Response(1);
+            Proto.Mirror.ConsensusTopicResponse response = Response(1);
             DateTimeOffset nextTimestamp = response.ConsensusTimestamp.ToDateTimeOffset().AddTicks(1);
-            Proto.ConsensusTopicQuery request = Request();
+            Proto.Mirror.ConsensusTopicQuery request = Request();
 
             topicMessageQuery.Limit = 2;
 
@@ -312,13 +312,13 @@ namespace Hedera.Hashgraph.Tests.SDK.Topic
             subscriptionHandle.Unsubscribe();
         }
 
-        private static Proto.ConsensusTopicQuery Request()
+        private static Proto.Mirror.ConsensusTopicQuery Request()
         {
-            return new Proto.ConsensusTopicQuery
+            return new Proto.Mirror.ConsensusTopicQuery
             {
                 ConsensusEndTime = START_TIME.AddSeconds(100).ToProtoTimestamp(),
                 ConsensusStartTime = START_TIME.ToProtoTimestamp(),
-                TopicID = new Proto.TopicID { TopicNum = 1000 }
+                TopicId = new Proto.Services.TopicID { TopicNum = 1000 }
             };
         }
 
@@ -327,24 +327,24 @@ namespace Hedera.Hashgraph.Tests.SDK.Topic
             return Timestamp.FromDateTimeOffset(dateTimeOffset);
         }
 
-        private static Proto.ConsensusTopicResponse Response(long sequenceNumber)
+        private static Proto.Mirror.ConsensusTopicResponse Response(long sequenceNumber)
         {
             return Response(sequenceNumber, 0);
         }
 
-        private static Proto.ConsensusTopicResponse Response(long sequenceNumber, int total)
+        private static Proto.Mirror.ConsensusTopicResponse Response(long sequenceNumber, int total)
         {
-            var response = new Proto.ConsensusTopicResponse();
+            var response = new Proto.Mirror.ConsensusTopicResponse();
 
             if (total > 0)
             {
-                response.ChunkInfo = new Proto.ConsensusMessageChunkInfo
+                response.ChunkInfo = new Proto.Services.ConsensusMessageChunkInfo
                 {
                     Number = (int)sequenceNumber,
                     Total = total,
-                    InitialTransactionID = new Proto.Services.TransactionID
+                    InitialTransactionId = new Proto.Services.TransactionID
                     {
-                        AccountID = new Proto.AccountID { AccountNum = 3 },
+                        AccountId = new Proto.Services.AccountID { AccountNum = 3 },
                         TransactionValidStart = START_TIME.ToProtoTimestamp(),
                     },
                 };
@@ -360,12 +360,12 @@ namespace Hedera.Hashgraph.Tests.SDK.Topic
 
             return response;
         }
-        private class ConsensusServiceStub : Proto.ConsensusService.ConsensusServiceBase
+        private class ConsensusServiceStub : Proto.Mirror.ConsensusService.ConsensusServiceBase
         {
-            public readonly Queue<Proto.ConsensusTopicQuery> requests = new();
+            public readonly Queue<Proto.Mirror.ConsensusTopicQuery> requests = new();
             public readonly Queue<object> responses = new();
 
-            public override async Task subscribeTopic(Proto.ConsensusTopicQuery consensusTopicQuery, IServerStreamWriter<Proto.ConsensusTopicResponse> streamWriter, ServerCallContext context)
+            public override async Task subscribeTopic(Proto.Mirror.ConsensusTopicQuery consensusTopicQuery, IServerStreamWriter<Proto.Mirror.ConsensusTopicResponse> streamWriter, ServerCallContext context)
             {
                 var request = requests.Count > 0 ? requests.Dequeue() : null;
                 Assert.NotNull(request);
@@ -381,7 +381,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Topic
                         throw rpcEx;
                     }
 
-                    await streamWriter.WriteAsync((Proto.ConsensusTopicResponse)response);
+                    await streamWriter.WriteAsync((Proto.Mirror.ConsensusTopicResponse)response);
                 }
             }
 

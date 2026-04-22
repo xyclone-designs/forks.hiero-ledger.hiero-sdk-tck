@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
-using System;
-using System.Collections.Generic;
-
 using Google.Protobuf;
+using Hedera.Hashgraph.Forks.HieroTCK.src.tests;
 
 using Hedera.Hashgraph.SDK.Ethereum;
 using Hedera.Hashgraph.SDK.HBar;
+using System;
+using System.Collections.Generic;
 
 namespace Hedera.Hashgraph.Tests.SDK.Ethereum
 {
@@ -25,7 +25,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Ethereum
                 (Func<object, object>)
                 (_ =>
                 {
-                    var signedTransaction = Proto.SignedTransaction.Parser.ParseFrom(((Proto.Services.Transaction)_).SignedTransactionBytes);
+                    var signedTransaction = Proto.Services.SignedTransaction.Parser.ParseFrom(((Proto.Services.Transaction)_).SignedTransactionBytes);
                     var transactionBody = Proto.Services.TransactionBody.Parser.ParseFrom(signedTransaction.BodyBytes);
                     
                     Assert.Equal(transactionBody.DataCase, Proto.Services.TransactionBody.DataOneofCase.EthereumTransaction);
@@ -49,7 +49,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Ethereum
                 }
             ];
 
-            using (var mocker = Mocker.WithResponses([responses1]))
+            using (var mocker = new Mocker([[.. responses1]]))
             {
                 new EthereumFlow
                 {
@@ -67,7 +67,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Ethereum
                 (Func<object, object>)
                 (_ =>
                 {
-                    var signedTransaction = Proto.SignedTransaction.Parser.ParseFrom(((Proto.Services.Transaction)_).SignedTransactionBytes);
+                    var signedTransaction = Proto.Services.SignedTransaction.Parser.ParseFrom(((Proto.Services.Transaction)_).SignedTransactionBytes);
                     var transactionBody = Proto.Services.TransactionBody.Parser.ParseFrom(signedTransaction.BodyBytes);
 
                     Assert.Equal(transactionBody.DataCase, Proto.Services.TransactionBody.DataOneofCase.EthereumTransaction);
@@ -93,7 +93,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Ethereum
             
             EthereumFlow ethereumFlow;
 
-            using (var mocker = Mocker.WithResponses([responses]))
+            using (var mocker = new Mocker([[.. responses]]))
             {
                 var ethereumData = EthereumTransactionData.FromBytes(LONG_CALL_DATA.ToByteArray());
 

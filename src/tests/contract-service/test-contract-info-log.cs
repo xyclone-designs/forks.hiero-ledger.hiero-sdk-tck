@@ -11,9 +11,9 @@ namespace Hedera.Hashgraph.Tests.SDK.Contract
 {
     public class ContractLogInfoTest
     {
-        private static readonly Proto.ContractLoginfo info = new Proto.ContractLoginfo
+        private static readonly Proto.Services.ContractLoginfo info = new Proto.Services.ContractLoginfo
         {
-			ContractID = new ContractId(0, 0, 10).ToProtobuf(),
+			ContractId = new ContractId(0, 0, 10).ToProtobuf(),
 			Bloom = ByteString.CopyFromUtf8("bloom"),
 			//Topic = [ByteString.CopyFromUtf8("bloom")],
 			Data = ByteString.CopyFromUtf8("data"),

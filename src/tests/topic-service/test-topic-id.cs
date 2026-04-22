@@ -3,7 +3,7 @@ using System;
 
 using Org.BouncyCastle.Utilities.Encoders;
 
-using Hedera.Hashgraph.SDK.Topic;
+using Hedera.Hashgraph.SDK.Consensus;
 using Hedera.Hashgraph.SDK.Token;
 
 using VerifyXunit;

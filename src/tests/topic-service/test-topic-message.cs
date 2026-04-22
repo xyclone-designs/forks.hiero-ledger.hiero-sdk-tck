@@ -1,14 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
 using System;
-using System.Linq;
 
-using Hedera.Hashgraph.SDK.Topic;
+using Hedera.Hashgraph.SDK.Consensus;
 using Hedera.Hashgraph.SDK.Transactions;
 using Hedera.Hashgraph.SDK.Account;
 
 using Google.Protobuf;
-
-using VerifyXunit;
 
 namespace Hedera.Hashgraph.Tests.SDK.Topic
 {
@@ -28,29 +25,29 @@ namespace Hedera.Hashgraph.Tests.SDK.Topic
             0x06
         };
         private static readonly ulong testSequenceNumber = 7;
-        private static readonly TransactionId testTransactionId = new TransactionId(new AccountId(0, 0, 1), testTimestamp);
+        private static readonly TransactionId testTransactionId = new (new AccountId(0, 0, 1), testTimestamp);
 
         [Fact]
         public virtual void ConstructWithArgs()
         {
-            var consensusTopicResponse = new Proto.Services.ConsensusTopicResponse
+            var consensusTopicResponse = new Proto.Mirror.ConsensusTopicResponse
             {
                 Message = ByteString.CopyFrom(testContents),
                 RunningHash = ByteString.CopyFrom(testRunningHash),
                 SequenceNumber = testSequenceNumber,
-                ChunkInfo = new Proto.ConsensusMessageChunkInfo { InitialTransactionID = testTransactionId.ToProtobuf() },
-                ConsensusTimestamp = new Proto.Timestamp
+                ChunkInfo = new Proto.Services.ConsensusMessageChunkInfo { InitialTransactionId = testTransactionId.ToProtobuf() },
+                ConsensusTimestamp = new Proto.Services.Timestamp
                 {
                     Seconds = testTimestamp.ToUnixTimeSeconds()
                 }
             };
 
-            TopicMessageChunk topicMessageChunk = new (new Proto.ConsensusTopicResponse
+            TopicMessageChunk topicMessageChunk = new (new Proto.Mirror.ConsensusTopicResponse
             {
                 Message = ByteString.CopyFrom(testContents),
                 RunningHash = ByteString.CopyFrom(testRunningHash),
                 SequenceNumber = testSequenceNumber,
-                ConsensusTimestamp = new Proto.Timestamp
+                ConsensusTimestamp = new Proto.Services.Timestamp
                 {
                     Seconds = testTimestamp.ToUnixTimeSeconds()
                 }
@@ -72,13 +69,13 @@ namespace Hedera.Hashgraph.Tests.SDK.Topic
         [Fact]
         public virtual void OfSingle()
         {
-            var consensusTopicResponse = new Proto.ConsensusTopicResponse
+            var consensusTopicResponse = new Proto.Mirror.ConsensusTopicResponse
             {
                 Message = ByteString.CopyFrom(testContents),
                 RunningHash = ByteString.CopyFrom(testRunningHash),
                 SequenceNumber = testSequenceNumber,
-                ChunkInfo = new Proto.ConsensusMessageChunkInfo { InitialTransactionID = testTransactionId.ToProtobuf() },
-                ConsensusTimestamp = new Proto.Timestamp
+                ChunkInfo = new Proto.Services.ConsensusMessageChunkInfo { InitialTransactionId = testTransactionId.ToProtobuf() },
+                ConsensusTimestamp = new Proto.Services.Timestamp
                 {
                     Seconds = testTimestamp.ToUnixTimeSeconds()
                 }
@@ -96,34 +93,34 @@ namespace Hedera.Hashgraph.Tests.SDK.Topic
         [Fact]
         public virtual void OfMany()
         {
-            var consensusTopicResponse1 = new Proto.ConsensusTopicResponse
+            var consensusTopicResponse1 = new Proto.Mirror.ConsensusTopicResponse
             {
                 Message = ByteString.CopyFrom(testContents),
                 RunningHash = ByteString.CopyFrom(testRunningHash),
                 SequenceNumber = testSequenceNumber,
-                ChunkInfo = new Proto.ConsensusMessageChunkInfo 
+                ChunkInfo = new Proto.Services.ConsensusMessageChunkInfo 
                 {
-                    InitialTransactionID = testTransactionId.ToProtobuf(),
+                    InitialTransactionId = testTransactionId.ToProtobuf(),
                     Number = 1,
                     Total = 2,
                 },
-                ConsensusTimestamp = new Proto.Timestamp
+                ConsensusTimestamp = new Proto.Services.Timestamp
                 {
                     Seconds = testTimestamp.ToUnixTimeSeconds()
                 }
             };
-            var consensusTopicResponse2 = new Proto.ConsensusTopicResponse
+            var consensusTopicResponse2 = new Proto.Mirror.ConsensusTopicResponse
             {
                 Message = ByteString.CopyFrom(testContents),
                 RunningHash = ByteString.CopyFrom(testRunningHash),
                 SequenceNumber = testSequenceNumber + 1,
-                ChunkInfo = new Proto.ConsensusMessageChunkInfo 
+                ChunkInfo = new Proto.Services.ConsensusMessageChunkInfo 
                 {
-                    InitialTransactionID = testTransactionId.ToProtobuf(),
+                    InitialTransactionId = testTransactionId.ToProtobuf(),
                     Number = 2,
                     Total = 2,
                 },
-                ConsensusTimestamp = new Proto.Timestamp
+                ConsensusTimestamp = new Proto.Services.Timestamp
                 {
                     Seconds = testTimestamp.ToUnixTimeSeconds() + 1
                 }

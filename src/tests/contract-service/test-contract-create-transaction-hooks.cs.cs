@@ -108,7 +108,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Contract
             Assert.Equal(1, protoBody.HookCreationDetails.Count);            
             var protoHook = protoBody.HookCreationDetails[0];
 
-            Assert.Equal(Proto.HookExtensionPoint.AccountAllowanceHook, protoHook.ExtensionPoint);
+            Assert.Equal(Proto.Services.HookExtensionPoint.AccountAllowanceHook, protoHook.ExtensionPoint);
             Assert.Equal(1, protoHook.HookId);
             Assert.True(protoHook.EvmHook is not null);
         }

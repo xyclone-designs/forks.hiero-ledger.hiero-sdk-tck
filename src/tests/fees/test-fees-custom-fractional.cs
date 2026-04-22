@@ -15,12 +15,12 @@ namespace Hedera.Hashgraph.Tests.SDK.Fees
         private static readonly int minAmount = 6;
         private static readonly int maxAmount = 7;
         private static readonly FeeAssessmentMethod feeAssessmentMethod = FeeAssessmentMethod.Exclusive;
-        private readonly Proto.FractionalFee fee = new Proto.FractionalFee
+        private readonly Proto.Services.FractionalFee fee = new Proto.Services.FractionalFee
 		{
 			NetOfTransfers = true,
 			MinimumAmount = minAmount,
 			MaximumAmount = maxAmount,
-			FractionalAmount = new Proto.Fraction
+			FractionalAmount = new Proto.Services.Fraction
 			{
 				Numerator = numerator,
 				Denominator = denominator,

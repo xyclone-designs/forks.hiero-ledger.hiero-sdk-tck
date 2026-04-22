@@ -23,11 +23,11 @@ namespace Hedera.Hashgraph.Tests.SDK.Schedule
                 ScheduleId.FromString("1.2.3"), 
                 AccountId.FromString("4.5.6"), 
                 AccountId.FromString("2.3.4"), 
-                new Proto.SchedulableTransactionBody 
+                new Proto.Services.SchedulableTransactionBody 
                 { 
-                    CryptoDelete = new Proto.CryptoDeleteTransactionBody 
+                    CryptoDelete = new Proto.Services.CryptoDeleteTransactionBody 
                     { 
-                        DeleteAccountID = AccountId.FromString("6.6.6").ToProtobuf()
+                        DeleteAccountId = AccountId.FromString("6.6.6").ToProtobuf()
                     }
                 }, 
                 [ unusedPublicKey ], 
@@ -47,11 +47,11 @@ namespace Hedera.Hashgraph.Tests.SDK.Schedule
                 ScheduleId.FromString("1.2.3"), 
                 AccountId.FromString("4.5.6"), 
                 AccountId.FromString("2.3.4"), 
-                new Proto.SchedulableTransactionBody
+                new Proto.Services.SchedulableTransactionBody
                 {
-                    CryptoDelete = new Proto.CryptoDeleteTransactionBody
+                    CryptoDelete = new Proto.Services.CryptoDeleteTransactionBody
                     {
-                        DeleteAccountID = AccountId.FromString("6.6.6").ToProtobuf()
+                        DeleteAccountId = AccountId.FromString("6.6.6").ToProtobuf()
                     }
                 }, 
                 [ unusedPublicKey ], 

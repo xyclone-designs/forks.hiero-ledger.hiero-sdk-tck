@@ -117,9 +117,9 @@ namespace Hedera.Hashgraph.Tests.SDK.Transactions
         [Fact]
         public virtual void TransactionBodiesMustMatch()
         {
-            Proto.Services.Transaction tx1 = Proto.Services.TransactionList.Parser.ParseFrom(SpawnTestTransaction().ToBytes()).TransactionList_[0];
-            Proto.Services.Transaction tx2 = Proto.Services.TransactionList.Parser.ParseFrom(SpawnModifiedTestTransaction().ToBytes()).TransactionList_[1];
-            var brokenTxList = new Proto.Services.TransactionList();
+            Proto.Services.Transaction tx1 = Proto.SDK.TransactionList.Parser.ParseFrom(SpawnTestTransaction().ToBytes()).TransactionList_[0];
+            Proto.Services.Transaction tx2 = Proto.SDK.TransactionList.Parser.ParseFrom(SpawnModifiedTestTransaction().ToBytes()).TransactionList_[1];
+            var brokenTxList = new Proto.SDK.TransactionList();
             brokenTxList.TransactionList_.Add(tx1);
             brokenTxList.TransactionList_.Add(tx2);
             var brokenTxBytes = brokenTxList.ToByteArray();

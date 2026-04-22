@@ -66,7 +66,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Transactions
         [Fact]
         public virtual void TokenAssociateTransactionFromTransactionBodyBytes()
         {
-            var tokenAssociateTransactionBodyProto = new Proto.TokenAssociateTransactionBody { };
+            var tokenAssociateTransactionBodyProto = new Proto.Services.TokenAssociateTransactionBody { };
             var transactionBodyProto = new Proto.Services.TransactionBody { TokenAssociate = tokenAssociateTransactionBodyProto };
             TokenAssociateTransaction tokenAssociateTransaction = SpawnTestTransaction(transactionBodyProto);
             var tokenAssociateTransactionFromBytes = ITransaction.FromBytes(tokenAssociateTransaction.ToBytes());
@@ -75,9 +75,9 @@ namespace Hedera.Hashgraph.Tests.SDK.Transactions
         [Fact]
         public virtual void TokenAssociateTransactionFromSignedTransactionBytes()
         {
-            var tokenAssociateTransactionBodyProto = new Proto.TokenAssociateTransactionBody { };
+            var tokenAssociateTransactionBodyProto = new Proto.Services.TokenAssociateTransactionBody { };
             var transactionBodyProto = new Proto.Services.TransactionBody { TokenAssociate = tokenAssociateTransactionBodyProto };
-            var signedTransactionProto = new Proto.SignedTransaction { BodyBytes = transactionBodyProto.ToByteString() };
+            var signedTransactionProto = new Proto.Services.SignedTransaction { BodyBytes = transactionBodyProto.ToByteString() };
             var signedTransactionBodyProto = Proto.Services.TransactionBody.Parser.ParseFrom(signedTransactionProto.BodyBytes);
             TokenAssociateTransaction tokenAssociateTransaction = SpawnTestTransaction(signedTransactionBodyProto);
             var tokenAssociateTransactionFromBytes = ITransaction.FromBytes(tokenAssociateTransaction.ToBytes());
@@ -86,13 +86,13 @@ namespace Hedera.Hashgraph.Tests.SDK.Transactions
         [Fact]
         public virtual void TokenAssociateTransactionFromTransactionBytes()
         {
-            var tokenAssociateTransactionBodyProto = new Proto.TokenAssociateTransactionBody
+            var tokenAssociateTransactionBodyProto = new Proto.Services.TokenAssociateTransactionBody
             { };
             var transactionBodyProto = new Proto.Services.TransactionBody
             {
                 TokenAssociate = tokenAssociateTransactionBodyProto
             };
-            var signedTransactionProto = new Proto.SignedTransaction
+            var signedTransactionProto = new Proto.Services.SignedTransaction
             {
                 BodyBytes = transactionBodyProto.ToByteString()
             };
@@ -485,8 +485,8 @@ namespace Hedera.Hashgraph.Tests.SDK.Transactions
             List<Transaction.SignableNodeTransactionBodyBytes> list = tx.GetSignableNodeBodyBytesList();
             Proto.Services.TransactionBody body = Proto.Services.TransactionBody.Parser.ParseFrom(list[0].Body);
             Assert.NotNull(body.CryptoTransfer);
-            Assert.Equal(AccountId.FromProtobuf(body.NodeAccountID).ToString(), nodeAccountID1.ToString());
-            Assert.Equal(TransactionId.FromProtobuf(body.TransactionID).ToString(), testTransactionID.ToString());
+            Assert.Equal(AccountId.FromProtobuf(body.NodeAccountId).ToString(), nodeAccountID1.ToString());
+            Assert.Equal(TransactionId.FromProtobuf(body.TransactionId).ToString(), testTransactionID.ToString());
         }
         [Fact]
         public virtual void TestGetSignableNodeBodyBytesListMultipleNodeIDs()
@@ -511,7 +511,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Transactions
                 // Verify body contents
                 Proto.Services.TransactionBody body = Proto.Services.TransactionBody.Parser.ParseFrom(list[i].Body);
                 Assert.NotNull(body.CryptoTransfer);
-                Assert.Equal(AccountId.FromProtobuf(body.NodeAccountID).ToString(), nodeID.ToString());
+                Assert.Equal(AccountId.FromProtobuf(body.NodeAccountId).ToString(), nodeID.ToString());
             }
         }
         [Fact]
@@ -555,7 +555,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Transactions
                 txIDsByNode[nodeIDStr].Add(txIDStr, true);
                 Proto.Services.TransactionBody body = Proto.Services.TransactionBody.Parser.ParseFrom(list[i].Body);
                 Assert.NotNull(body.FileAppend);
-                Assert.Equal(AccountId.FromProtobuf(body.NodeAccountID).ToString(), list[i].NodeID.ToString());
+                Assert.Equal(AccountId.FromProtobuf(body.NodeAccountId).ToString(), list[i].NodeID.ToString());
             }
 
 

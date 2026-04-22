@@ -8,7 +8,7 @@ using Hedera.Hashgraph.SDK.Contract;
 using Hedera.Hashgraph.SDK.File;
 using Hedera.Hashgraph.SDK.Schedule;
 using Hedera.Hashgraph.SDK.Token;
-using Hedera.Hashgraph.SDK.Topic;
+using Hedera.Hashgraph.SDK.Consensus;
 using Hedera.Hashgraph.SDK.Transactions;
 
 using System;

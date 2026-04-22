@@ -8,7 +8,7 @@ using Org.BouncyCastle.Utilities.Encoders;
 using Hedera.Hashgraph.SDK.Keys;
 using Hedera.Hashgraph.SDK.Fees;
 using Hedera.Hashgraph.SDK.Token;
-using Hedera.Hashgraph.SDK.Topic;
+using Hedera.Hashgraph.SDK.Consensus;
 using Hedera.Hashgraph.SDK.Networking;
 using Hedera.Hashgraph.SDK.Account;
 
@@ -36,9 +36,9 @@ namespace Hedera.Hashgraph.Tests.SDK.Topic
                 DenominatingTokenId = new TokenId(0, 0, 0)
             } 
         ];
-        private static readonly Proto.ConsensusGetTopicInfoResponse info = new Proto.ConsensusGetTopicInfoResponse
+        private static readonly Proto.Services.ConsensusGetTopicInfoResponse info = new Proto.Services.ConsensusGetTopicInfoResponse
         {
-            TopicInfo = new Proto.ConsensusTopicInfo
+            TopicInfo = new Proto.Services.ConsensusTopicInfo
             {
                 Memo = "1",
                 RunningHash = ByteString.CopyFrom(hash),

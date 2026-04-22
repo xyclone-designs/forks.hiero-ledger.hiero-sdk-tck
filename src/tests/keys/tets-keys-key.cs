@@ -81,7 +81,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Keys
         public virtual void FromProtoKeyEd25519()
         {
             var keyBytes = Hex.Decode("0011223344556677889900112233445566778899001122334455667788990011");
-            var protoKey = new Proto.Key { Ed25519 = ByteString.CopyFrom(keyBytes) };
+            var protoKey = new Proto.Services.Key { Ed25519 = ByteString.CopyFrom(keyBytes) };
             var cut = PublicKey.FromProtobufKey(protoKey);
             Assert.IsType<PublicKeyED25519>(cut);
             Assert.Same(cut.ToBytes(), keyBytes);
@@ -90,7 +90,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Keys
         public virtual void FromProtoKeyECDSA()
         {
             var keyProtobufBytes = Hex.Decode("3a21034e0441201f2bf9c7d9873c2a9dc3fd451f64b7c05e17e4d781d916e3a11dfd99");
-            var protoKey = Proto.Key.Parser.ParseFrom(keyProtobufBytes);
+            var protoKey = Proto.Services.Key.Parser.ParseFrom(keyProtobufBytes);
             var cut = PublicKey.FromProtobufKey(protoKey);
             Assert.IsType<PublicKeyECDSA>(cut);
             Assert.Same(((PublicKey)cut).ToProtobufKey().ToByteArray(), keyProtobufBytes);
@@ -104,13 +104,13 @@ namespace Hedera.Hashgraph.Tests.SDK.Keys
                 Hex.Decode("0011223344556677889900112233445566778899001122334455667788990011"),
                 Hex.Decode("aa11223344556677889900112233445566778899001122334455667788990011")
             };
-            var protoKeyList = new Proto.KeyList();
+            var protoKeyList = new Proto.Services.KeyList();
             foreach (byte[] kb in keyBytes)
             {
-                protoKeyList.Keys.Add(new Proto.Key { Ed25519 = ByteString.CopyFrom(kb) });
+                protoKeyList.Keys.Add(new Proto.Services.Key { Ed25519 = ByteString.CopyFrom(kb) });
             }
 
-            var protoKey = new Proto.Key { KeyList = protoKeyList };
+            var protoKey = new Proto.Services.Key { KeyList = protoKeyList };
 
             // when
             var cut = Key.FromProtobufKey(protoKey);
@@ -132,15 +132,15 @@ namespace Hedera.Hashgraph.Tests.SDK.Keys
                 Hex.Decode("0011223344556677889900112233445566778899001122334455667788990011"),
                 Hex.Decode("aa11223344556677889900112233445566778899001122334455667788990011")
             };
-            var protoKeyList = new Proto.KeyList();
+            var protoKeyList = new Proto.Services.KeyList();
 
             foreach (byte[] kb in keyBytes)
             {
-                protoKeyList.Keys.Add(new Proto.Key { Ed25519 = ByteString.CopyFrom(kb) });
+                protoKeyList.Keys.Add(new Proto.Services.Key { Ed25519 = ByteString.CopyFrom(kb) });
             }
 
-            var protoThresholdKey = new Proto.ThresholdKey { Threshold = 1, Keys = protoKeyList };
-            var protoKey = new Proto.Key { ThresholdKey = protoThresholdKey };
+            var protoThresholdKey = new Proto.Services.ThresholdKey { Threshold = 1, Keys = protoKeyList };
+            var protoKey = new Proto.Services.Key { ThresholdKey = protoThresholdKey };
 
             // when
             var cut = Key.FromProtobufKey(protoKey);
@@ -163,7 +163,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Keys
                 (byte)1,
                 (byte)2
             };
-            var protoKey = new Proto.Key { RSA3072 = ByteString.CopyFrom(keyBytes) };
+            var protoKey = new Proto.Services.Key { RSA3072 = ByteString.CopyFrom(keyBytes) };
             InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => Key.FromProtobufKey(protoKey));
         }
         [Fact]
@@ -230,7 +230,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Keys
         public virtual void FromBytesEd25519()
         {
             var keyBytes = Hex.Decode("0011223344556677889900112233445566778899001122334455667788990011");
-            var protoKey = new Proto.Key { Ed25519 = ByteString.CopyFrom(keyBytes) };
+            var protoKey = new Proto.Services.Key { Ed25519 = ByteString.CopyFrom(keyBytes) };
             var bytes = protoKey.ToByteArray();
             var cut = PublicKey.FromBytes(bytes);
             Assert.Equal(cut.GetType(), typeof(PublicKeyED25519));
@@ -252,14 +252,14 @@ namespace Hedera.Hashgraph.Tests.SDK.Keys
                 Hex.Decode("0011223344556677889900112233445566778899001122334455667788990011"),
                 Hex.Decode("aa11223344556677889900112233445566778899001122334455667788990011")
             };
-            var protoKeyList = new Proto.KeyList();
+            var protoKeyList = new Proto.Services.KeyList();
 
             foreach (byte[] kb in keyBytes)
             {
-                protoKeyList.Keys.Add(new Proto.Key { Ed25519 = ByteString.CopyFrom(kb) });
+                protoKeyList.Keys.Add(new Proto.Services.Key { Ed25519 = ByteString.CopyFrom(kb) });
             }
 
-            var protoKey = new Proto.Key { KeyList = protoKeyList };
+            var protoKey = new Proto.Services.Key { KeyList = protoKeyList };
             var bytes = protoKey.ToByteArray();
             var cut = KeyList.FromBytes(bytes);
             Assert.Equal(cut.GetType(), typeof(KeyList));
@@ -277,17 +277,17 @@ namespace Hedera.Hashgraph.Tests.SDK.Keys
                 Hex.Decode("0011223344556677889900112233445566778899001122334455667788990011"),
                 Hex.Decode("aa11223344556677889900112233445566778899001122334455667788990011")
             };
-            var protoKeyList = new Proto.KeyList();
+            var protoKeyList = new Proto.Services.KeyList();
 
             foreach (byte[] kb in keyBytes)
             {
-                protoKeyList.Keys.Add(new Proto.Key { Ed25519 = ByteString.CopyFrom(kb) });
+                protoKeyList.Keys.Add(new Proto.Services.Key { Ed25519 = ByteString.CopyFrom(kb) });
             }
 
-            var protoThresholdKey =  new Proto.ThresholdKey { Threshold = 1, Keys = new Proto.KeyList { } };
+            var protoThresholdKey =  new Proto.Services.ThresholdKey { Threshold = 1, Keys = new Proto.Services.KeyList { } };
             protoThresholdKey.Keys.Keys.AddRange(protoKeyList.Keys);
 
-            var protoKey = new Proto.Key { ThresholdKey = protoThresholdKey };
+            var protoKey = new Proto.Services.Key { ThresholdKey = protoThresholdKey };
             var bytes = protoKey.ToByteArray();
             var cut = KeyList.FromBytes(bytes);
             Assert.Equal(cut.GetType(), typeof(KeyList));
@@ -302,7 +302,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Keys
         public virtual void ThrowsUnsupportedKeyFromBytes()
         {
             byte[] keyBytes = [0, 1, 2];
-            var protoKey = new Proto.Key
+            var protoKey = new Proto.Services.Key
             {
 				RSA3072 = ByteString.CopyFrom(keyBytes)
 			};

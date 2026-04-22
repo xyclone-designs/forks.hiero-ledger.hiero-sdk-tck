@@ -80,7 +80,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Hook
         [Fact]
         public virtual void FromProtobufWithoutKeyThrows()
         {
-            var emptyProto = new Proto.EvmHookMappingEntry();
+            var emptyProto = new Proto.Services.EvmHookMappingEntry();
 
             Assert.Throws<ArgumentException>(() => EvmHookMappingEntry.FromProtobuf(emptyProto));
         }

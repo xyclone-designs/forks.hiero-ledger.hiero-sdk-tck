@@ -16,7 +16,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Fees
         private static readonly TokenId tokenId = new TokenId(2, 3, 4);
         private static readonly AccountId feeCollector = new AccountId(5, 6, 7);
         private static readonly List<AccountId> payerAccountIds = [new AccountId(8, 9, 10), new AccountId(11, 12, 13), new AccountId(14, 15, 16)];
-        private readonly Proto.AssessedCustomFee fee = new Proto.AssessedCustomFee
+        private readonly Proto.Services.AssessedCustomFee fee = new Proto.Services.AssessedCustomFee
         {
 			Amount = amount,
 			TokenId = tokenId.ToProtobuf(),

@@ -16,9 +16,9 @@ namespace Hedera.Hashgraph.Tests.SDK.File
     public class FileInfoTest
     {
         private static readonly PrivateKey privateKey = PrivateKey.FromString("302e020100300506032b657004220420db484b828e64b2d8f12ce3c0a0e93a0b8cce7af1bb8f39c97732394482538e10");
-        private static readonly Proto.FileGetInfoResponse.Types.FileInfo info = new ()
+        private static readonly Proto.Services.FileGetInfoResponse.Types.FileInfo info = new ()
         {
-			FileID = new FileId(0, 0, 1).ToProtobuf(),
+			FileId = new FileId(0, 0, 1).ToProtobuf(),
 			Size = 2,
 			ExpirationTime = DateTimeOffset.FromUnixTimeMilliseconds(3).ToProtoTimestamp(),
 			Deleted = true,

@@ -61,9 +61,9 @@ namespace Hedera.Hashgraph.Tests.SDK.Nfts
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-				TokenUpdateNfts = new Proto.TokenUpdateNftsTransactionBody()
+				TokenUpdateNfts = new Proto.Services.TokenUpdateNftsTransactionBody()
 			};
             var tx = Transaction.FromScheduledTransaction<TokenUpdateNftsTransaction>(transactionBody);
             Assert.IsType<TokenUpdateNftsTransaction>(tx);
@@ -71,7 +71,7 @@ namespace Hedera.Hashgraph.Tests.SDK.Nfts
         [Fact]
         public virtual void ConstructTokenUpdateTransactionFromTransactionBodyProtobuf()
         {
-            var transactionBody = new Proto.TokenUpdateNftsTransactionBody
+            var transactionBody = new Proto.Services.TokenUpdateNftsTransactionBody
             {
                 Token = testTokenId.ToProtobuf(),
                 Metadata = ByteString.CopyFrom(testMetadata),

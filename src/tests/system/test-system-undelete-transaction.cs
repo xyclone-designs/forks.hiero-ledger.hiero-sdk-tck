@@ -77,9 +77,9 @@ namespace Hedera.Hashgraph.Tests.SDK.System
         [Fact]
         public virtual void FromScheduledTransaction()
         {
-            var transactionBody = new Proto.SchedulableTransactionBody
+            var transactionBody = new Proto.Services.SchedulableTransactionBody
             {
-                SystemUndelete = new Proto.SystemUndeleteTransactionBody()
+                SystemUndelete = new Proto.Services.SystemUndeleteTransactionBody()
             };
             
             var tx = Transaction.FromScheduledTransaction(transactionBody);

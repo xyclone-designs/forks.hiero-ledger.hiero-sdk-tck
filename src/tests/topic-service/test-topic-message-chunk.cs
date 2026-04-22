@@ -3,7 +3,7 @@ using System;
 
 using Hedera.Hashgraph.SDK.Transactions;
 using Hedera.Hashgraph.SDK.Account;
-using Hedera.Hashgraph.SDK.Topic;
+using Hedera.Hashgraph.SDK.Consensus;
 
 using Google.Protobuf;
 
@@ -30,13 +30,13 @@ namespace Hedera.Hashgraph.Tests.SDK.Topic
         [Fact]
         public virtual void ConstructWithArgs()
         {
-            var consensusTopicResponse = new Proto.ConsensusTopicResponse
+            var consensusTopicResponse = new Proto.Mirror.ConsensusTopicResponse
             {
-                ConsensusTimestamp = new Proto.Timestamp{ Seconds = testTimestamp.ToUnixTimeSeconds() },
+                ConsensusTimestamp = new Proto.Services.Timestamp{ Seconds = testTimestamp.ToUnixTimeSeconds() },
                 Message = ByteString.CopyFrom(testContents),
                 RunningHash = ByteString.CopyFrom(testRunningHash),
                 SequenceNumber = testSequenceNumber,
-                ChunkInfo = new Proto.ConsensusMessageChunkInfo { InitialTransactionID = testTransactionId.ToProtobuf() },
+                ChunkInfo = new Proto.Services.ConsensusMessageChunkInfo { InitialTransactionId = testTransactionId.ToProtobuf() },
             };
 
             TopicMessageChunk topicMessageChunk = new (consensusTopicResponse);
