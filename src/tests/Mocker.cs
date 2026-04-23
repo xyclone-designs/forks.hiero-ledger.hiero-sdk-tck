@@ -4,7 +4,7 @@ using Grpc.Core;
 
 using Hedera.Hashgraph.SDK;
 using Hedera.Hashgraph.SDK.Account;
-using Hedera.Hashgraph.SDK.Keys;
+using Hedera.Hashgraph.SDK.Cryptography;
 
 using System;
 using System.Collections.Generic;

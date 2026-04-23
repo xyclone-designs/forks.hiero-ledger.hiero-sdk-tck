@@ -2,7 +2,7 @@
 using Google.Protobuf;
 
 using Hedera.Hashgraph.SDK.File;
-using Hedera.Hashgraph.SDK.Keys;
+using Hedera.Hashgraph.SDK.Cryptography;
 using Hedera.Hashgraph.SDK.Networking;
 
 using Org.BouncyCastle.Utilities.Encoders;

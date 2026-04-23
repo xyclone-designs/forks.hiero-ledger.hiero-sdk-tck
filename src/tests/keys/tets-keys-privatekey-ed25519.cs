@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 using Hedera.Hashgraph.SDK;
 using Hedera.Hashgraph.SDK.Exceptions;
-using Hedera.Hashgraph.SDK.Keys;
+using Hedera.Hashgraph.SDK.Cryptography;
 
 using Org.BouncyCastle.Math.EC.Rfc8032;
 using Org.BouncyCastle.OpenSsl;

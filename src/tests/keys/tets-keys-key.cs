@@ -6,7 +6,7 @@ using System.Text;
 using Google.Protobuf;
 
 using Hedera.Hashgraph.SDK;
-using Hedera.Hashgraph.SDK.Keys;
+using Hedera.Hashgraph.SDK.Cryptography;
 
 using Org.BouncyCastle.Math;
 using Org.BouncyCastle.Utilities.Encoders;
