@@ -4,12 +4,12 @@ using Google.Protobuf;
 using Hedera.Hashgraph.SDK.Cryptography;
 using Hedera.Hashgraph.SDK.File;
 using Hedera.Hashgraph.SDK.Transactions;
-using Hedera.Hashgraph.SDK.Account;
-using Hedera.Hashgraph.SDK.HBar;
+using Hedera.Hashgraph.SDK.Cryptocurrency;
 
 using System;
 
 using VerifyXunit;
+using Hedera.Hashgraph.SDK;
 
 namespace Hedera.Hashgraph.TCK.FileService
 {

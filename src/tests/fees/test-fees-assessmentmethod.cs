@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-using Hedera.Hashgraph.SDK.Fees;
+using Hedera.Hashgraph.SDK.Fee;
 
 namespace Hedera.Hashgraph.Tests.SDK.Fees
 {

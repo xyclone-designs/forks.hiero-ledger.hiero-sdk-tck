@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: Apache-2.0
-using Hedera.Hashgraph.SDK.Account;
+using Hedera.Hashgraph.SDK.Cryptocurrency;
 using Hedera.Hashgraph.SDK.Ethereum;
-using Hedera.Hashgraph.SDK.HBar;
 using Hedera.Hashgraph.SDK.Cryptography;
 using Hedera.Hashgraph.SDK.Transactions;
 
 using System;
 
 using VerifyXunit;
+using Hedera.Hashgraph.SDK;
 
 namespace Hedera.Hashgraph.TCK.CryptoService
 {

@@ -3,7 +3,7 @@ using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 
 using Hedera.Hashgraph.SDK;
-using Hedera.Hashgraph.SDK.Account;
+using Hedera.Hashgraph.SDK.Cryptocurrency;
 using Hedera.Hashgraph.SDK.HBar;
 using Hedera.Hashgraph.SDK.Cryptography;
 using Hedera.Hashgraph.SDK.Networking;

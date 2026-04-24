@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-using Hedera.Hashgraph.SDK.HBar;
+using Hedera.Hashgraph.SDK;
 using Hedera.Hashgraph.SDK.Token;
 
 using System.Text.RegularExpressions;

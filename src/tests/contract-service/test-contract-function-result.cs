@@ -6,7 +6,7 @@ using Hedera.Hashgraph.SDK.Contract;
 
 using Google.Protobuf;
 
-using Hedera.Hashgraph.SDK.Account;
+using Hedera.Hashgraph.SDK.Cryptocurrency;
 
 namespace Hedera.Hashgraph.Tests.SDK.Contract
 {

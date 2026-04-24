@@ -6,11 +6,11 @@ using System.Linq;
 using Org.BouncyCastle.Utilities.Encoders;
 
 using Hedera.Hashgraph.SDK.Cryptography;
-using Hedera.Hashgraph.SDK.Fees;
+using Hedera.Hashgraph.SDK.Fee;
 using Hedera.Hashgraph.SDK.Token;
 using Hedera.Hashgraph.SDK.Consensus;
 using Hedera.Hashgraph.SDK.Networking;
-using Hedera.Hashgraph.SDK.Account;
+using Hedera.Hashgraph.SDK.Cryptocurrency;
 
 using Google.Protobuf;
 

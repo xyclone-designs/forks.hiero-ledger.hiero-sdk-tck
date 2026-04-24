@@ -6,14 +6,14 @@ using System.Text;
 using Org.BouncyCastle.Utilities.Encoders;
 
 using Hedera.Hashgraph.SDK.Cryptography;
-using Hedera.Hashgraph.SDK.Account;
+using Hedera.Hashgraph.SDK.Cryptocurrency;
 using Hedera.Hashgraph.SDK.Transactions;
 using Hedera.Hashgraph.SDK.File;
-using Hedera.Hashgraph.SDK.HBar;
 
 using Google.Protobuf;
 
 using VerifyXunit;
+using Hedera.Hashgraph.SDK;
 
 namespace Hedera.Hashgraph.TCK.FileService
 {

@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Hedera.Hashgraph.SDK.Transactions;
-using Hedera.Hashgraph.SDK.Account;
+using Hedera.Hashgraph.SDK.Cryptocurrency;
 using Hedera.Hashgraph.SDK.Cryptography;
-using Hedera.Hashgraph.SDK.HBar;
 using Hedera.Hashgraph.SDK.Ethereum;
 using Hedera.Hashgraph.SDK;
 

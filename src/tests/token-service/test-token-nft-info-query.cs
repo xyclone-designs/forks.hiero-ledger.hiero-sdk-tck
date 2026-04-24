@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: Apache-2.0
 using Hedera.Hashgraph.SDK.Nfts;
 using Hedera.Hashgraph.SDK.Token;
-using Hedera.Hashgraph.SDK.HBar;
-using Hedera.Hashgraph.SDK.Account;
+using Hedera.Hashgraph.SDK.Cryptocurrency;
 
 using System.Text.RegularExpressions;
 
 using VerifyXunit;
+using Hedera.Hashgraph.SDK;
 
 namespace Hedera.Hashgraph.Tests.SDK.Nfts
 {

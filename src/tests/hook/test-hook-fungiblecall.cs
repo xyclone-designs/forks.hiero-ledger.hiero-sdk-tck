@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
 using Hedera.Hashgraph.SDK.Hook;
 using Hedera.Hashgraph.SDK.Transactions;
-using Hedera.Hashgraph.SDK.Account;
-using Hedera.Hashgraph.SDK.HBar;
+using Hedera.Hashgraph.SDK.Cryptocurrency;
 using Hedera.Hashgraph.SDK.Token;
 
 using System.Linq;
+using Hedera.Hashgraph.SDK;
 
 namespace Hedera.Hashgraph.Tests.SDK.Hook
 {

@@ -2,7 +2,7 @@
 using Google.Protobuf;
 
 using Hedera.Hashgraph.SDK;
-using Hedera.Hashgraph.SDK.Account;
+using Hedera.Hashgraph.SDK.Cryptocurrency;
 using Hedera.Hashgraph.SDK.Ethereum;
 using Hedera.Hashgraph.SDK.Exceptions;
 

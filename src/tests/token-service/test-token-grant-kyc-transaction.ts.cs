@@ -2,7 +2,7 @@
 using System;
 
 using Hedera.Hashgraph.SDK.Token;
-using Hedera.Hashgraph.SDK.Account;
+using Hedera.Hashgraph.SDK.Cryptocurrency;
 using Hedera.Hashgraph.SDK.Transactions;
 using Hedera.Hashgraph.SDK.HBar;
 using Hedera.Hashgraph.SDK.Cryptography;
