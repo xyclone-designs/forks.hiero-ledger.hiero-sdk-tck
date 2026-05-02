@@ -9,7 +9,27 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="src\config\**" />
+	  <Compile Remove="src\controller\**" />
+	  <Compile Remove="src\server\**" />
+	  <EmbeddedResource Remove="src\config\**" />
+	  <EmbeddedResource Remove="src\controller\**" />
+	  <EmbeddedResource Remove="src\server\**" />
+	  <None Remove="src\config\**" />
+	  <None Remove="src\controller\**" />
+	  <None Remove="src\server\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <PackageReference Include="StreamJsonRpc" Version="2.24.84" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="src\tests\token-service\params\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Hedera.Hashgraph.SDK\Hedera.Hashgraph.SDK.csproj" />
 	</ItemGroup>
 
 </Project>

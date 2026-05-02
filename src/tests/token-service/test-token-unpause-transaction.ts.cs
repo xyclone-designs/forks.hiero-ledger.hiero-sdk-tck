@@ -1,0 +1,22 @@
+// SPDX-License-Identifier: Apache-2.0
+using Hedera.Hashgraph.SDK;
+using Hedera.Hashgraph.SDK.Token;
+using Hedera.Hashgraph.SDK.Transactions;
+using Hedera.Hashgraph.TCK.Util;
+using Hedera.Hashgraph.TCK.Tests.TokenService.Params;
+using Hedera.Hashgraph.TCK.Tests.TokenService.Responses;
+
+namespace Hedera.Hashgraph.TCK.Tests.TokenService
+{
+    public partial class TokenService 
+    {
+        public virtual TokenResponse TokenUnpauseTransaction(PauseUnpauseTokenParams @params)
+        {
+            TokenUnpauseTransaction transaction = TransactionBuilders.TokenBuilder.BuildUnpause(@params);
+            Client client = sdkService.GetClient(@params.SessionId);
+            @params.CommonTransactionParams?.FillOutTransaction(transaction, client);
+            TransactionReceipt receipt = transaction.Execute(client).GetReceipt(client);
+            return new TokenResponse("", receipt.Status);
+        }
+    }
+}
