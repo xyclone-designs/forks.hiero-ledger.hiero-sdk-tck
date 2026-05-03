@@ -9,8 +9,6 @@ namespace Hedera.Hashgraph.TCK.Tests
 {
     public abstract class Service  
     {
-        // this is shared state to all requests so there could be race conditions
-        // although the tck driver would not call these methods in such way
         private readonly Dictionary<string, MethodInfo> methodMap;
         protected Service()
         {
@@ -18,9 +16,6 @@ namespace Hedera.Hashgraph.TCK.Tests
             RegisterMethods();
         }
 
-        /// <summary>
-        /// Register JSONRPCMethods
-        /// </summary>
         private void RegisterMethods()
         {
             MethodInfo[] methods = GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance);

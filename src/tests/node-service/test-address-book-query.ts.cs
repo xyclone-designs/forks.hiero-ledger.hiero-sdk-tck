@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Hedera.Hashgraph.TCK.Tests.NodeService
 {
-    public partial class NodeService 
+    public partial class TestAddress
     {
         public virtual AddressBookResponse AddressBookQuery(AddressBookQueryParams @params)
         {

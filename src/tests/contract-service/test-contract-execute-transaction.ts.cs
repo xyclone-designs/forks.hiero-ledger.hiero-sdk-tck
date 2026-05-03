@@ -10,7 +10,7 @@ using Org.BouncyCastle.Utilities.Encoders;
 
 namespace Hedera.Hashgraph.TCK.Tests.ContractService
 {
-    public partial class ContractService 
+    public partial class TestContract 
     {
         public virtual ContractResponse ExecuteContract(ExecuteContractParams @params)
         {

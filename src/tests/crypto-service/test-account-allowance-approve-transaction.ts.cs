@@ -5,7 +5,7 @@ using Hedera.Hashgraph.TCK.Util;
 
 namespace Hedera.Hashgraph.TCK.Tests.CryptoService
 {
-    public partial class AccountService 
+    public partial class TestAccount 
     {
         public virtual AccountAllowanceResponse ApproveAllowance(AccountAllowanceParams @params)
         {

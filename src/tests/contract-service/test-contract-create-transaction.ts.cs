@@ -15,7 +15,7 @@ using System;
 
 namespace Hedera.Hashgraph.TCK.Tests.ContractService
 {
-    public partial class ContractService 
+    public partial class TestContract 
     {
         public virtual ContractResponse CreateContract(CreateContractParams @params)
         {

@@ -9,7 +9,7 @@ using Hedera.Hashgraph.TCK.Tests.TopicService.Responses;
 
 namespace Hedera.Hashgraph.TCK.Tests.TopicService
 {
-    public partial class TopicService 
+    public partial class TestTopic
     {
         public virtual TopicResponse DeleteTopic(DeleteTopicParams @params)
         {

@@ -7,7 +7,7 @@ using Hedera.Hashgraph.TCK.Tests.NodeService.Responses;
 
 namespace Hedera.Hashgraph.TCK.Tests.NodeService
 {
-    public partial class NodeService 
+    public partial class TestNode
     {
         public virtual NodeResponse DeleteNode(NodeDeleteParams @params)
         {

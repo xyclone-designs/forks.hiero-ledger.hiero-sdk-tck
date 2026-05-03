@@ -8,7 +8,7 @@ using Hedera.Hashgraph.TCK.Util;
 
 namespace Hedera.Hashgraph.TCK.Tests.Ethereum
 {
-    public partial class EthereumService 
+    public partial class TestEthereum 
     {
         public virtual EthereumTransactionResponse CreateEthereumTransaction(EthereumTransactionParams @params)
         {
@@ -19,7 +19,7 @@ namespace Hedera.Hashgraph.TCK.Tests.Ethereum
 
             TransactionReceipt receipt = transaction.Execute(client).GetReceipt(client);
             string contractId = "";
-            if (receipt.Status == SDK.ResponseStatus.Success)
+            if (receipt.Status == ResponseStatus.Success)
             {
                 contractId = receipt.ContractId.ToString();
             }

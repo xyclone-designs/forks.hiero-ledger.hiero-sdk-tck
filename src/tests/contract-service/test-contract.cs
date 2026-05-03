@@ -3,21 +3,10 @@ using Hedera.Hashgraph.SDK;
 using Hedera.Hashgraph.SDK.Contract;
 using Hedera.Hashgraph.TCK.Tests.ContractService.Responses;
 
-using System;
-
 namespace Hedera.Hashgraph.TCK.Tests.ContractService
 {
-    public partial class ContractService : Service
+    public partial class TestContract(SdkService sdkService) : ContractService(sdkService)
     {
-        private static readonly TimeSpan DEFAULT_GRPC_DEADLINE = TimeSpan.FromSeconds(10);
-        private readonly SdkService sdkService;
-
-        public ContractService(SdkService sdkService)
-        {
-            this.sdkService = sdkService;
-        }
-
-
         private static ContractResponse.ContractInfoQueryResponse MapContractInfo(ContractInfo result)
         {
             return new ContractResponse.ContractInfoQueryResponse

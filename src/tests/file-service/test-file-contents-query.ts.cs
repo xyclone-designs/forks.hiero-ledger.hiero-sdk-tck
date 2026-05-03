@@ -9,7 +9,7 @@ using Hedera.Hashgraph.TCK.Util;
 
 namespace Hedera.Hashgraph.TCK.Tests.FileService
 {
-    public partial class FileService 
+    public partial class TestFile 
     {
         public virtual FileContentsResponse GetFileContents(FileContentsParams @params)
         {

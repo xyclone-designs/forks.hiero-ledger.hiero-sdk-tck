@@ -6,7 +6,7 @@ using Hedera.Hashgraph.TCK.Tests.ContractService.Responses;
 
 namespace Hedera.Hashgraph.TCK.Tests.ContractService
 {
-    public partial class ContractService 
+    public partial class TestContract 
     {
         public virtual ContractResponse DeleteContract(DeleteContractParams @params)
         {

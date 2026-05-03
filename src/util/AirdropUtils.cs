@@ -3,7 +3,7 @@ using Hedera.Hashgraph.SDK.Cryptocurrency;
 using Hedera.Hashgraph.SDK.Nfts;
 using Hedera.Hashgraph.SDK.Token;
 using Hedera.Hashgraph.TCK.Exceptions;
-using Hedera.Hashgraph.TCK.Tests.Transfer.Params;
+using Hedera.Hashgraph.TCK.Tests.CryptoService.Params;
 using System;
 
 namespace Hedera.Hashgraph.TCK.Util

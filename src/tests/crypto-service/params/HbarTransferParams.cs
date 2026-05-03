@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Hedera.Hashgraph.TCK.Tests.Transfer.Params
+namespace Hedera.Hashgraph.TCK.Tests.CryptoService.Params
 {
     public class HbarTransferParams
     {

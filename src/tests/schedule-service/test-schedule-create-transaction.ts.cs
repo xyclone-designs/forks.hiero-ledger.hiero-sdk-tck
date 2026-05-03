@@ -11,7 +11,7 @@ using System;
 
 namespace Hedera.Hashgraph.TCK.Tests.ScheduleService
 {
-    public partial class ScheduleService 
+    public partial class TestSchedule
     {
         public virtual ScheduleResponse CreateSchedule(ScheduleCreateParams @params)
         {

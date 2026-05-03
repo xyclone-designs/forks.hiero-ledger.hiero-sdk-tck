@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-using Hedera.Hashgraph.TCK.Tests.Transfer.Params;
-using Hedera.Hashgraph.TCK.Util;
+using Hedera.Hashgraph.TCK.Tests.CryptoService.Params;
 
 using System;
 using System.Collections.Generic;

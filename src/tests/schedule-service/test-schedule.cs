@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Hedera.Hashgraph.TCK.Tests.ScheduleService
 {
-    public partial class ScheduleService : Service
+    public partial class TestSchedule(SdkService sdkService) : ScheduleService(sdkService)
     {
         private static readonly TimeSpan DEFAULT_GRPC_DEADLINE = TimeSpan.FromSeconds(10);
         private static readonly IReadOnlyDictionary<string, Func<Dictionary<string, object>, ITransaction>> ScheduledTransactionBuilders = new Dictionary<string, Func<Dictionary<string, object>, ITransaction>>
@@ -49,13 +49,6 @@ namespace Hedera.Hashgraph.TCK.Tests.ScheduleService
             ["deleteAllowance"] = TransactionBuilders.AccountBuilder.BuildDeleteAllowance,
             ["appendFile"] = TransactionBuilders.FileBuilder.BuildAppend
         };
-
-        private readonly SdkService sdkService;
-
-        public ScheduleService(SdkService sdkService)
-        {
-            sdkService = sdkService ?? throw new ArgumentNullException(nameof(sdkService));
-        }
 
         private ScheduleInfoResponse MapScheduleInfoResponse(ScheduleInfo scheduleInfo)
         {

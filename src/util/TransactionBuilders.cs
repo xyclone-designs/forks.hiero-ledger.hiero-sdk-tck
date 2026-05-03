@@ -8,7 +8,6 @@ using Hedera.Hashgraph.SDK.Consensus;
 using Hedera.Hashgraph.SDK.Cryptocurrency;
 using Hedera.Hashgraph.SDK.Cryptography;
 using Hedera.Hashgraph.SDK.Ethereum;
-using Hedera.Hashgraph.SDK.Fee;
 using Hedera.Hashgraph.SDK.File;
 using Hedera.Hashgraph.SDK.Nfts;
 using Hedera.Hashgraph.SDK.Token;
@@ -18,7 +17,6 @@ using Hedera.Hashgraph.TCK.Tests.Ethereum.Params;
 using Hedera.Hashgraph.TCK.Tests.FileService.Params;
 using Hedera.Hashgraph.TCK.Tests.TokenService.Params;
 using Hedera.Hashgraph.TCK.Tests.TopicService.Params;
-using Hedera.Hashgraph.TCK.Tests.Transfer.Params;
 
 using Org.BouncyCastle.Utilities.Encoders;
 
@@ -311,7 +309,7 @@ namespace Hedera.Hashgraph.TCK.Util
                 {
                     foreach (var txParams in transfers)
                     {
-                        // AccountService.ProcessTransfer(transaction, txParams);
+                        TransferUtils.ProcessTransfer(transaction, txParams);
                     }
                 }
                 return transaction;

@@ -5,7 +5,7 @@ using Hedera.Hashgraph.TCK.Tests.CryptoService.Params;
 
 namespace Hedera.Hashgraph.TCK.Tests.CryptoService
 {
-    public partial class AccountService 
+    public partial class TestAccount 
     {
         public virtual GetAccountInfoResponse GetAccountInfo(GetAccountInfoParams @params)
         {

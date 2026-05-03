@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Hedera.Hashgraph.TCK.Tests.ContractService
 {
-    public partial class ContractService 
+    public partial class TestContract 
     {
         public virtual ContractCallResponse ContractCallQuery(ContractCallQueryParams @params)
         {
