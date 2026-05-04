@@ -12,15 +12,12 @@
 	  <Compile Remove="src\server\**" />
 	  <EmbeddedResource Remove="src\server\**" />
 	  <None Remove="src\server\**" />
+	  <None Remove="node_modules" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <FrameworkReference Include="Microsoft.AspNetCore.App" />
 	  <PackageReference Include="StreamJsonRpc" Version="2.24.84" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="src\tests\token-service\params\" />
 	</ItemGroup>
 
 	<ItemGroup>
